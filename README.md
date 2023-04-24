@@ -1,2 +1,0 @@
-# docker-rookie
-Docker tester
