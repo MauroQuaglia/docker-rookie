@@ -1,0 +1,25 @@
+https://www.cloud.it/tutorial/primi-passi-con-docker.aspx
+
+docker pull hello-world:latest
+docker run hello-world
+
+
+IMMAGINI:
+docker pull REPOSITORY:TAG (scarica dal Docker hun l'immagine)
+docker images (fa vedere tutte le immagini presenti)
+docker rmi IMAGE (Es: docker rmi hello-world:latest. Da notare percò che se c'è un container istanziato bisogna prima rimuovere il container)
+
+
+CONTAINER
+esempio 1)
+docker run -p1234:80 nginx:1.19
+http://localhost:1234/ ---> Welcome to nginx!
+
+esempio 2)
+docker run -p1235:80 -it nginx:1.19
+così ho anche una console dentro il container ch emi fa vedere le chiamate
+
+
+
+Lista dei container attivi: docker ps
+Lista di tutti i container: docker ps -a
