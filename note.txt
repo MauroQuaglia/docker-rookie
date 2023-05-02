@@ -5,7 +5,7 @@ docker run hello-world
 
 
 IMMAGINI:
-docker pull REPOSITORY:TAG (scarica dal Docker hun l'immagine)
+docker pull REPOSITORY:TAG (scarica dal Docker hub l'immagine)
 docker images (fa vedere tutte le immagini presenti)
 docker rmi IMAGE (Es: docker rmi hello-world:latest. Da notare percò che se c'è un container istanziato bisogna prima rimuovere il container)
 
