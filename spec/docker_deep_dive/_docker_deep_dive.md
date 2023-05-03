@@ -23,9 +23,9 @@
   * Può non essere facile portare una App containerizzata da un sistema ad un altro perché il funzionamento dell'App si basa sul SO sottostante.
 
 # Prodotti di Docker, Inc.
-  * Docker, 
+  * Docker
   * Doker Desktop (versione di docker per Windows e Mac) 
-  * Docker Hub.
+  * Docker Hub
 
 # L'architettura `docker` è composta di vari livelli:
   * __Runtime__: start e stop dei container
@@ -40,3 +40,18 @@
     * `dockerd` un solo processo
   * __Docker Swarm__:
     * La gestione dei "cluster di nodi Docker" (swarm)
+
+# Come usare Docker
+* Ci sono due livelli:
+  * Docker Client
+  * Docker Engine (che sarebbe il demone dokerd)
+* Il tipico flusso è questo:
+  * Client (1) -> demone (dockerd) (1) -> containerd (1) -> runc (n) 
+  * Il Client comunica con l'Engine tramite socket (`/var/run/docker.sock`)
+
+# Immagini
+* Pensiamola come a un oggetto che contiene un filesystem di un SO, un'applicazione e tutte le sue dipendenze.
+* Nel mondo Docker una immagine è un container fermo.
+* Uno dev la può pensare come a una classe.
+* Dockerfile ---crea---> Immagine
+  * `docker build .`
