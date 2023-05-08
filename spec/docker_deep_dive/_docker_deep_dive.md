@@ -8,7 +8,7 @@
     * Comunque spreco di risorse, lentezza, manutenzione e licenze di ogni SO
 * Container:
     * 1 server -> + App (App1, SO) (App2, SO) ...
-    * Tutte le App condividono lo stesso SO
+    * Tutte le App condividono lo stesso SO di base
     * Ottimizzazione delle risorse, facile per manutenzione e licenze. Veloce e portabile.
     * Difficile da usare
 * Docker:
@@ -48,10 +48,9 @@
 * Il tipico flusso è questo:
   * Client (1) -> demone (dockerd) (1) -> containerd (1) -> runc (n) 
   * Il Client comunica con l'Engine tramite socket (`/var/run/docker.sock`)
+  * Tipicamente il Client e l'Engine sono sullo stesso Docker Host (il PC) ma volendo si possono anche dividere e mettere su macchine separate facendoli comunicare via https.
 
 # Immagini
 * Pensiamola come a un oggetto che contiene un filesystem di un SO, un'applicazione e tutte le sue dipendenze.
 * Nel mondo Docker una immagine è un container fermo.
 * Uno dev la può pensare come a una classe.
-* Dockerfile ---crea---> Immagine
-  * `docker build .`
