@@ -54,3 +54,6 @@
 * Pensiamola come a un oggetto che contiene un filesystem di un SO, un'applicazione e tutte le sue dipendenze.
 * Nel mondo Docker una immagine è un container fermo.
 * Uno dev la può pensare come a una classe.
+
+# Risorse
+* [Dockerfile](https://docs.docker.com/engine/reference/builder/)
