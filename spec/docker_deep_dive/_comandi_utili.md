@@ -6,6 +6,8 @@
   * Tutte le informazioni rigurado il numero attuale dei container, immagini, e altro presenti sulla macchina.
 * `systemctl is-active docker`
   * Check dello status del demone Docker.  
+* `systemctl restart docker`
+  * Far ripartire il demone.
 
 ---
 # Immagini
@@ -38,9 +40,11 @@
   * Mi fa vedere tutti i container attivi.
 * `docker container ls -a`
   * Mi fa vedere tutti i container, attivi e non.
-* `docker container run -it ubuntu:latest /bin/bash`
+* `docker container run -it ubuntu:latest(=image) /bin/bash(=app)`
   * Il `-it` mi fa entrare direttamente nella shell del container dopo che l'ho avviato partendo dall'immagine.
   * Con `Ctrl-PQ` posso uscire dal container senza ucciderlo. Questo perché viene lasciato attivo il processo principale `/bin/bash` del container.
   * Con `exit` uccido anche il container. Questo perché viene ucciso il processo principale `/bin/bash` e il container non ha più senso di esistere.
 * `docker container exec -it heuristic_roentgen /bin/bash`
   * Mi riaggancio ad un container che è ancora in stato running.
+* `docker container inspect 78baeb5f6588`
+  * Tante cose interessanti sul container in esecuzione. 
