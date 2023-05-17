@@ -1,0 +1,2 @@
+# INSTRUCTION arguments
+FROM scratch
