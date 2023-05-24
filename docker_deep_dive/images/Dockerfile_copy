@@ -1,6 +1,0 @@
-# docker build -t test:copy . -f Dockerfile_copy
-
-FROM ubuntu:latest
-
-# Copia il file locale copy_test.txt nella home del filesystem del container
-COPY copy_test.txt .

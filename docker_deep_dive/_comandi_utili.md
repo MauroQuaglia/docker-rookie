@@ -8,6 +8,8 @@
   * Check dello status del demone Docker.  
 * `systemctl restart docker`
   * Far ripartire il demone.
+* `docker-compose --version`
+  * Il Compose è un software costruito sopra Docker e va installato a parte, non fa parte dell'installazione originale.
 
 ---
 # Immagini
@@ -56,3 +58,11 @@
   * Si possono salavre dati anche all'interno del container. Se fermo e faccio ripartire il container i dati rimangono ma se cancello il container i dati vengono persi... anche se fisicamente presenti sul docker host questi alla cancellazione del container vengono cancellati.
 * restart
   * E' sempre una buona idea avviare un container con una politica di restart: always, unless-stopped, on-failed.
+---
+# Volumes
+* `docker volume ls`
+  * Per vedere tutti i volumi montati.
+---
+* Networs
+* `docker networks ls`
+  * PEr vedere tutte le reti. 

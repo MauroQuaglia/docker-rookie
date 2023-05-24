@@ -1,0 +1,10 @@
+# Immagine:
+#  docker build -t test:run . -f Dockerfile-run --no-cache
+# Container:
+#  docker container rm test_run
+#  docker container run --name test_run -it test:run /bin/bash
+
+FROM ubuntu:latest
+# Due RUN di file fanno due layer distinti, per questo di solito si usa mettere tutto in un RUN solo
+RUN apt-get update
+RUN apt-get upgrade -y

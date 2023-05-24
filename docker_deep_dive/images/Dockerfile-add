@@ -1,0 +1,10 @@
+# Immagine:
+#  docker build -t test:add . -f Dockerfile-add --no-cache
+# Container:
+#  docker container rm test_add
+#  docker container run --name test_add -it test:add /bin/bash
+
+FROM ubuntu:latest
+
+# Copia anche da sorgenti remote. Quando posso uso la COPY, se proprio devo usa la ADD:
+ADD https://www.google.com/robots.txt /tmp

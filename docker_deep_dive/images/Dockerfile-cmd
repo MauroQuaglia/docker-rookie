@@ -1,0 +1,9 @@
+# Immagine:
+#  docker build -t test:cmd . -f Dockerfile-cmd --no-cache
+# Container:
+#  docker container rm test_cmd
+#  docker container run --name test_cmd -it test:cmd
+
+FROM ubuntu:latest
+
+#CMD ["/bin/bash"]
