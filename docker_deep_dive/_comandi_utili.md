@@ -1,4 +1,4 @@
-# Comandi Utili
+# Docker
 
 * `docker version`: 
   * Tutte le informazioni riguardanti il Client e il Server di Docker.
@@ -8,8 +8,27 @@
   * Check dello status del demone Docker.  
 * `systemctl restart docker`
   * Far ripartire il demone.
+---
+# Compose
 * `docker-compose --version`
   * Il Compose è un software costruito sopra Docker e va installato a parte, non fa parte dell'installazione originale.
+* `docker-compose up &`:
+  * Tiro su la App in foreground ma senza bloccare il terminale.
+  * Crea tutta l'infrastruttura: build immagine, crea reti, crea volumi e poi fa partire i container.
+  * E' utile poi vedere tutto ciò che ha creato con i soliti comandi del tipo `docker image|container|network|volume ls|inspect`
+  * Anche qui sono molto utili i comandi:
+    * `docker-compose ps`: Stato corrente dell'App
+    * `docker-compose top`: Vedere il processo attivo all'interno di ogni container. 
+* `docker-compose up -d`:
+  * Tiro su la App in background.
+* `docker-compose down`:
+  * Ferma e cancella l'App.
+  * Butta container e reti
+  * Non butta immagini e volumi
+* `docker-compose stop`:
+  * Ferma l'App ma non cancella nulla.
+  * Se poi la volgio cancellare devo fare `docker-compose rm` 
+  * Se poi la volgio fare ripartire devo fare `docker-compose restart`
 
 ---
 # Immagini
@@ -63,6 +82,6 @@
 * `docker volume ls`
   * Per vedere tutti i volumi montati.
 ---
-* Networs
+# Networs
 * `docker networks ls`
-  * PEr vedere tutte le reti. 
+  * Per vedere tutte le reti. 
