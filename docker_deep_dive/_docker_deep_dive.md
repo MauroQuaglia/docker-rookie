@@ -55,5 +55,20 @@
 * Nel mondo Docker una immagine è un container fermo.
 * Uno dev la può pensare come a una classe.
 
-# Risorse
-* [Dockerfile](https://docs.docker.com/engine/reference/builder/)
+# Swarm
+* E' un insieme di docker host configurati per l'orchestrazione.
+* Docker Swarm (è più semplice ma fa meno cose) di Kubernetes (che è più complesso ma fa più cose)
+  * Alla fine se non ho cose molto complesse il Docker Swarm è la soluzione migliore. 
+* Il mio docker host è in single-engine mode. Se faccio `docker swarm init` diventa in swarm-mode. E' stato creato uno swarm e il mio docker host è il primo manager dello swarm. Poi a questo manager posso aggiungere
+altri manager o worker tramite un token di configurazione.
+
+# Servizi
+* I servizi si applicano sono alla modalità swarm, e permettono di specificare il numero delle replice. Ci sono due modi di creare un servizio:
+da linea di comando `docker service create` oppure tramite uno stack file.
+* 
+# Reti
+* __None__: il container riceve uno stack di rete, che però è privo di connessione esterna. Questa modalità è utile per testare i container, predisporre un container per una successiva connessione di rete e per l'assegnazione ai container che non richiedono comunicazioni esterne.
+* __Bridge__: container collegati a un bridge su una rete host interna e autorizzati a comunicare con altri container sullo stesso host. Non è possibile accedere ai container dall'esterno dell'host. La rete bridge è quella predefinita per i container Docker.
+* __Host__: questa configurazione consente a un container creato di condividere lo spazio dei nomi di rete dell'host, concedendo al container l'accesso a tutte le interfacce di rete dell'host. È la meno complessa tra le configurazioni di rete esterna, ma è soggetta a conflitti tra le porte dovuti all'uso condiviso delle interfacce di rete.
+* __Underlay__: gli underlay aprono le interfacce host direttamente ai container in esecuzione sull'host ed eliminano la necessità di mappatura delle porte, rendendoli più efficienti dei bridge.
+* __Overlay__: gli overlay utilizzano i tunnel di rete per la comunicazione tra gli host, consentendo ai container di agire come se si trovassero sulla stessa macchina quando sono ospitati su host diversi.

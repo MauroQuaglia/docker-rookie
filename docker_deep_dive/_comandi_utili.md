@@ -1,5 +1,8 @@
 # Docker
 
+# Risorse
+* [Dockerfile](https://docs.docker.com/engine/reference/builder/)
+
 * `docker version`: 
   * Tutte le informazioni riguardanti il Client e il Server di Docker.
 * `docker info`:
@@ -85,3 +88,21 @@
 # Networs
 * `docker networks ls`
   * Per vedere tutte le reti. 
+---
+# Swarm
+* `docker swarm init`
+ * Per inizializzare uno swarm. Il nodo da cui lo faccio diventa il primo manager.
+* `docker node ls`
+ * Per vedere (da un manager) tutti i nodi dello swarm, sia manager che worker. 
+---
+# Services
+* `docker service ls`
+  * Per vedere tutti i servizi attivi nello swarm.
+* `docker service ps [nome-servizio]` 
+  * Per vedere lo stato del servizio.
+* `docker service inspect [nome-servizio]`
+  * Per vedere i dettagli del servizio
+* `docker service scale [nome-servizio]=1|2|3|...`
+  * Per replicare il servizio il numero di volte che voglio
+* `docker service rm [nome-servizio]`
+  * Per rimuovere il servizio.
