@@ -87,13 +87,23 @@
 ---
 # Networs
 * `docker networks ls`
-  * Per vedere tutte le reti. 
+  * Per vedere tutte le reti.
+* `docker network create -d brige [nome-rete]`
+  * Per creare una nuova rete bridge
+* `docker network create -d overlay [nome-rete]`
+  * Per creare una nuova rete overlay
+* Per ispezionare i dettagli di rete (per esempio la bridge):
+  * `docker inspect bridge`
+  * `ip link show docker0`
+  * `brctl show` (apt-get install bridge-utils)
 ---
 # Swarm
 * `docker swarm init`
  * Per inizializzare uno swarm. Il nodo da cui lo faccio diventa il primo manager.
 * `docker node ls`
- * Per vedere (da un manager) tutti i nodi dello swarm, sia manager che worker. 
+ * Per vedere (da un manager) tutti i nodi dello swarm, sia manager che worker.
+* `docker service logs [nome-servizio]`
+ * Per vedere il log del servizio. 
 ---
 # Services
 * `docker service ls`
