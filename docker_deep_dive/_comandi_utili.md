@@ -103,7 +103,9 @@
 * `docker node ls`
  * Per vedere (da un manager) tutti i nodi dello swarm, sia manager che worker.
 * `docker service logs [nome-servizio]`
- * Per vedere il log del servizio. 
+ * Per vedere il log del servizio.
+* `docker secret ls`
+* Per vedere tutti i secret.
 ---
 # Services
 * `docker service ls`
@@ -116,3 +118,11 @@
   * Per replicare il servizio il numero di volte che voglio
 * `docker service rm [nome-servizio]`
   * Per rimuovere il servizio.
+* `docker service logs [nome-servizio|replica ID]`
+  * Per vedere tutti i log del servizio o solo quelli di una specifica replica.
+---
+# Stack
+* `docker stack ls`
+ * Per vedere tutti gli stack sul Docker swarm.
+* `docker stack ps [nome-servizio]`
+* Per vedere tutte le caratteristiche di uno stack deployato (servizi, volumi, reti, ...)
