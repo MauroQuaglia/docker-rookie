@@ -1,5 +1,8 @@
 # Immagini
 * L'immagine contiene codice applicativo, dipendenze e costrutti del SO. Tutto quello che serve per avviare un'applicazione. In generale l'immagine è una somma di read-only layer indipendenti.
+* Pensiamola come a un oggetto che contiene un filesystem di un SO, un'applicazione e tutte le sue dipendenze.
+* Nel mondo Docker una immagine è un container fermo.
+* Uno dev la può pensare come a una classe.
 
 ## Registry
 * Il principale, ma non unico, Image Registry è Docker Hub. Un Image Registry può avere più Repository da cui scaricare le immagini. Nel Docker Hub ci sono:
@@ -77,3 +80,28 @@ COPY --from=appserver ... mi prendo solo il file bbb.txt
 * PRO: ho un'immagine con tanti layer che voglio usare per creare altre immagini. Posso usare lo squash e usare un solo layer.
 * CONTRO: non c'è condivisione di layer, quindi una mancata ottimizzazione di layer condivisi.
 * E' una funzionalità da verificare perché potrebbe essere cambiata nel tempo.
+
+# Comandi
+* `docker images` oppure `docker image ls`:
+  * Mi fa vedere tutte le immagini in locale
+  * Un'immagine ha un unico IMAGE_ID ma può avere più TAG.
+* `docker image ls --filter dangling=true`
+  * Per vedere le immagine senza repository e tag... può succedere in caso di duplicati che Docker tolga dei tag.
+* `docker image pull ubuntu:latest`:
+  * Formato: `docker image pull repository:tag`
+  * Scarica l'ultima versione di ubuntu.
+  * Tendenzialmente meglio non usare il tag "latest". Che a volte neppure è veramente l'ultima uscita visto che ci sono anche le "edge"
+  * La cosa più sicura in assoluto è usare il digest dell'immagine. L'image-id.
+* `docker build .`
+  * Crea l'immagine a partire dal Dockerfile
+* `docker build -t test:latest .`
+  * Crea un'immagine a partire dal Dockerfile, dove -t gli da un nome
+* `docker image prune -a`
+  * Cancella tutte le immagini dangling e tutte quelle non associate a container che stanno girando.
+* `docker search nigelpoulton`
+  * Si può anche cercare nel DockerHub da riga di comando.
+  * Esempio, tutti i repositori con nigelpoulton nel loro nome... 25 righe
+* `docker image inspect 3735d52b5c9e`, `docker image history 3735d52b5c9e`
+  * Per vedere tutti i dettagli di un'immagine.
+* `docker manifest inspect busybox` (per esempio busybox)
+  * Fa vedere le piattaforme e SO disponibili compatibili con quell'immagine che sto scaricando.

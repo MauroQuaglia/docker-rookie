@@ -35,5 +35,20 @@
 * Per pulire tutti i container con forza bruta: `docker container rm $(docker container ls -aq) -f`
     * Cancella tutti i container, sia quelli attivi che quelli fermi (stopped)
 
-## Info
+## Comandi
 * Per avere informazioni dettagliate sulla configurazione, sul runtime e i metadati: `docker container inspect ID|nome`
+* `docker container ls`
+  * Mi fa vedere tutti i container attivi.
+* `docker container ls -a`
+  * Mi fa vedere tutti i container, attivi e non.
+* `docker container run --name xxx(nome container) -it(shell interattiva) ubuntu:latest(image) /bin/bash(app)`
+  * Il `-it` mi fa entrare direttamente nella shell del container dopo che l'ho avviato partendo dall'immagine.
+  * Con `Ctrl-PQ` posso uscire dal container senza ucciderlo. Questo perché viene lasciato attivo il processo principale `/bin/bash` del container.
+  * Con `exit` uccido anche il container. Questo perché viene ucciso il processo principale `/bin/bash` e il container non ha più senso di esistere.
+* `docker container exec -it heuristic_roentgen /bin/bash`
+  * Mi riaggancio ad un container che è ancora in stato running.
+  * In tal caso viene lanciata una nuova bash, anche se quella preesistente è ancora attiva.
+* `docker container inspect 78baeb5f6588`
+  * Tante cose interessanti sul container in esecuzione.
+* `docker container stop 78baeb5f6588` + `docker container rm 78baeb5f6588`
+  * Per rimuovere il container è meglio fare prima stop.
