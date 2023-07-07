@@ -14,3 +14,6 @@ docker network ls
 
 echo -e "${RED}VOLUMES:${NOCOLOR}"
 docker volume ls
+
+echo -e "${RED}PLUGINS:${NOCOLOR}"
+docker plugin ls

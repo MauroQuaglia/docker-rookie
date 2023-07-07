@@ -32,30 +32,4 @@ Dopo aver sistemato le precedenti possiamo costruire lo Swarm.
 * Gira costantemente in background un reconciliation-loop per mantenere allineati lo "stato osservato" con lo "stato desiderato".
 
 # Comandi
-
-## Swarm
 * `docker node ls`: Per vedere (da un manager) tutti i nodi dello Swarm, sia manager che worker.
-* `docker service logs [nome-servizio]`
-* Per vedere il log del servizio.
-* `docker secret ls`
-* Per vedere tutti i secret.
-* 
-## Services
-* `docker service ls`
-  * Per vedere tutti i servizi attivi nello swarm.
-* `docker service ps [nome-servizio]`
-  * Per vedere lo stato del servizio.
-* `docker service inspect [nome-servizio]`
-  * Per vedere i dettagli del servizio
-* `docker service scale [nome-servizio]=1|2|3|...`
-  * Per replicare il servizio il numero di volte che voglio
-* `docker service rm [nome-servizio]`
-  * Per rimuovere il servizio.
-* `docker service logs [nome-servizio|replica ID]`
-  * Per vedere tutti i log del servizio o solo quelli di una specifica replica.
-
-## Stack
-* `docker stack ls`
-* Per vedere tutti gli stack sul Docker swarm.
-* `docker stack ps [nome-servizio]`
-* Per vedere tutte le caratteristiche di uno stack deployato (servizi, volumi, reti, ...)
