@@ -1,0 +1,2 @@
+C'è anche un Docker desktop per Linux nel caso volessi far girare il demone su una VM locale piuttosto che diretamente sul sistema.
+* Guardare qui /etc/apt/sources.list.d per vedere da dove apt va a scaricare il pacchetto di docker. 
