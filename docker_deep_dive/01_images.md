@@ -18,7 +18,9 @@
 * Il __digest__ invece è univoco nel tempo, quindi più sicuro. Esempio:
   * `docker image pull alpine:latest` (guardo che digest ha, si vede quando scarica l'immagine)
   * Ora che ho il digest posso fissare la situazione: `docker image pull alpine@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1`
-* OSS: L'immagine Alpine Linux (__alpine:latest__) è la più piccola immagine Linux ufficiale.
+* OSS: L'immagine Alpine Linux (__alpine:latest__) è la più piccola immagine Linux ufficiale. Se non devo fare quasi nulla è meglio usare questa.
+  * Anche molte altre immagini si basano su questa.
+  * Alpine Linux si basa su __musl__ standard library invece che sulla tradizionale __glibc__ (GNU C Library). Non è mai un grosso problema ma è bene saperlo.
 
 ### Image Registri Locale
 * Sull'host le immagini sono archiviate da qualche parte sotto `/var/lib/docker`.
@@ -80,6 +82,13 @@ COPY --from=appserver ... mi prendo solo il file bbb.txt
 * PRO: ho un'immagine con tanti layer che voglio usare per creare altre immagini. Posso usare lo squash e usare un solo layer.
 * CONTRO: non c'è condivisione di layer, quindi una mancata ottimizzazione di layer condivisi.
 * E' una funzionalità da verificare perché potrebbe essere cambiata nel tempo.
+
+## .dockerignore
+Questo file è importante per dire a Docker cosa escludere durante la build dell'immagine. 
+Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti i file nell'immagine. In realtà mando al Server tutti i file tranne quelli del `.dockerignore` perché poi è il Server che fa la build dell'immagine.
+
+## BuildKit
+* BuildKit è il nuovo motore per costruire immagini. Per abilitarlo basta mettere come variabile di ambiente `DOCKER_BUILDKIT=1`.
 
 # Comandi
 * `docker images` oppure `docker image ls`:

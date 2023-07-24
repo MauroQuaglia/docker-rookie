@@ -16,6 +16,7 @@
 
 ## Accessi
 * Se non ho gli accessi per accedere al Server di Docker (il demone) devo entrare nel gruppo "docker" di utenti: `username -aG docker <user>` e poi chiudere e riaprire il terminale.
+ * Oppure anche per lanciare i comandi senza `sudo`. 
 
 ## Restart Policy
 * E' sempre bene fare partire un container con una policy di restart.

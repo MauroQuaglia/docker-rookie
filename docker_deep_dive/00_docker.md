@@ -50,6 +50,9 @@
   * La comunicazione avviene tramite socket `/var/run/docker.sock` quando Client e Server sono sullo stesso host.
   * Tipicamente il Client e l'Engine sono sullo stesso Docker Host (il PC) ma volendo si possono anche dividere e mettere su macchine separate facendoli comunicare via https.
   * Il Server è chiamato anche __demone__ o __engine__ ed è costituito da `demone` + `containerd` + `runc`.
+* Il Client può parlare anche con più server remoti. Vedere il comando `docker context`. 
+  * Dato che l'immagine la fa il server (Il client invia al server i file per fare la build), io potrei deployare una mia immagine su un host remoto.
+* La configurazione del Server è in `/etc/docker/daemon.json`
 
 # Comandi
 * Per vedere che la comunicazione tra Client e Server funzioni correttamente:
@@ -71,3 +74,5 @@
   * Check dello status del demone Docker.
 * `systemctl restart docker`
   * Far ripartire il demone.
+* Per fare partire il demone docker al boot dell'host:
+* `systemctl enable docker`
