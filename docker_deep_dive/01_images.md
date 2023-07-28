@@ -69,6 +69,15 @@ FROM w:k AS production
 COPY --from=storefront ... mi prendo solo il file aaa.txt
 COPY --from=appserver ... mi prendo solo il file bbb.txt
 ```
+* Il comando `FROM scratch` permette di partire da una  immagine vuota.  
+
+# Layer
+* Sono additivi per cui due RUN di fila creano due layer distinti:
+ * `RUN apt-get update`
+ * `RUN apt-get clean`
+* Il secondo RUN non pulisce i dati delprimo layer, anzi crea  un altro layer!
+ * Quello che si vuole fare in realtà sarebbe: `RUN apt-get update && RUN apt-get clean`
+
 
 ## Push Image su DockerHub
 * Devo avere un account Docker ID = Docker Hub username.
