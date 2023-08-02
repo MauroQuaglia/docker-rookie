@@ -34,6 +34,7 @@
   * Nel __command__ e nell'__entrypoint__ si può vedere quale app è designata a partire.
 * Per vedere le istruzioni usate per creare l'immagine: `docker image history x:y`
   * E' anche un modo per curiosare nel Dockerfile di un'immagine scaricata.
+* I setting del Dockerfile sono dei default. Si possono overraidare da linea di comando quando lancio un container.
 
 ## Rimozione immagine
 * Posso cancellare un'immagine solo se non ci sono container (attivi e non attivi) collegati ad essa.
