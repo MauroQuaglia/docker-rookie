@@ -1,0 +1,2 @@
+ARG ubuntu="ubuntu@sha256:3246518d9735254519e1b2ff35f95686e4a5011c90c85344c1f38df7bae9dd37"
+FROM $ubuntu
