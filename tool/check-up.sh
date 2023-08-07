@@ -14,6 +14,6 @@ echo -e "${RED}----------------------------------------------------------${NOCOL
 docker system info
 
 echo -e "${RED}---------------------------------------------------------------------------------------------------${NOCOLOR}"
-echo -e "${RED}Ricordati che in /var/lib/docker ci sono immagini e container e molto altro... ma solo se sei root!:${NOCOLOR}"
-echo -e "${RED}Ricordati che in /etc/docker c'è la configurazione del demone!:${NOCOLOR}"
+echo -e "${RED}In /var/lib/docker ci sono immagini e container, volumi e molto altro... ma solo se sei root!:${NOCOLOR}"
+echo -e "${RED}In /etc/docker c'è la configurazione del demone!:${NOCOLOR}"
 echo -e "${RED}---------------------------------------------------------------------------------------------------${NOCOLOR}"

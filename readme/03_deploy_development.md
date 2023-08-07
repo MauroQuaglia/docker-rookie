@@ -1,4 +1,5 @@
 # Deploy development
+* Il `docker-compose.yml` è per il Single Engine Mode.
 * Il file chiave è il __docker-compose.yml__, che crea un'immagine a partire dal __Dockefile__ e deploya l'App fatta da più microservizi.
 * In questo caso siamo in single-engine mode, ossia siamo su un Docker host che non fa parte di uno Swarm.
 * Per il deploy `docker-compose up`

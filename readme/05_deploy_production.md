@@ -1,5 +1,6 @@
 # Deploy production
 
+* Il `docker-stack.yml` è per lo Swarm Mode.
 * Bisogna avere uno Swarm inizializzato.
 * Il file chiave è il __docker-stack.yml__, che non crea un'immagine ma la vuole già pronta e deploya l'App fatta da più
   microservizi.

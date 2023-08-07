@@ -1,5 +1,5 @@
-ARG latest="sha256:3246518d9735254519e1b2ff35f95686e4a5011c90c85344c1f38df7bae9dd37"
-FROM $latest
+ARG ubuntu="ubuntu@sha256:b060fffe8e1561c9c3e6dea6db487b900100fc26830b9ea2ec966c151ab4c020"
+FROM $ubuntu
 
 COPY . ./
 
