@@ -53,3 +53,4 @@
   * Tante cose interessanti sul container in esecuzione.
 * `docker container stop 78baeb5f6588` + `docker container rm 78baeb5f6588`
   * Per rimuovere il container è meglio fare prima stop.
+* `docker container diff` bello perché fa vedere la differenza del sistema opertativo prima e dopo il lancio di un comando così si può vedere se quel comando ha aggiunto o modificato cose nel container.
