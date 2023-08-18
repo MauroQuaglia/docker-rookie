@@ -6,9 +6,9 @@ sudo docker container run \
   --volume=/sys:/sys:ro \
   --volume=/var/lib/docker/:/var/lib/docker:ro \
   --volume=/dev/disk/:/dev/disk:ro \
-  --publish=8080:8080 \
+  --publish=8088:8080 \
   --detach=true \
-  --name=c_advisor \
+  --name=c_advisor_2 \
   --privileged \
   --device=/dev/kmsg \
   gcr.io/cadvisor/cadvisor:latest
