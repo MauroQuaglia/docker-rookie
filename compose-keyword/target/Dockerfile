@@ -12,5 +12,14 @@ COPY . /data-staging-2
 COPY . /data-staging-2
 
 # In sostanza posso dirgli dove fermarsi a fare la build dell'immagine ma deve andare ad aumentare, non posso dire quale immagine fare.
-# Due FROM base non vanno bene!
+# Due "FROM base" non vanno bene!
 # Ecco qui il perché: https://docs.docker.com/build/building/multi-stage/
+# Questa cosa funziona solo con BuildKit, altrimenti ricompila tutte le base.
+
+# Questo fa quello che ci si aspetta
+# DOCKER_BUILDKIT=1 docker build --no-cache -f Dockerfile --target staging .
+
+# Questo no
+# DOCKER_BUILDKIT=0 docker build --no-cache -f Dockerfile --target staging .
+
+# Non saprei come farli prendere di default BuildKit, forse basta impostarlo nel demone.
