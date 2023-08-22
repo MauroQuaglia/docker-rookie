@@ -1,13 +1,15 @@
-version: '3.6'
+version: '3.6' # docker-compose config
 services:
   qoturnix:
     build: # E' meglio dargli già una immagine compilata perché se la compila lui se ne sbatte del file .dockerignore perché è un tool separato che non legge il dockerigonre! Se invece faccio un "docker image build" questo legge il .dockerigonre e fa la cosa corretta!
+           # Per garantire che i tuoi file non desiderati siano esclusi dalla build dell'immagine Docker, dovresti configurare il tuo file .dockerignore correttamente e quindi utilizzare il comando docker build per creare l'immagine, se necessario, prima di utilizzarla con Docker Compose.
       args:
         - UBUNTU=ubuntu@sha256:b060fffe8e1561c9c3e6dea6db487b900100fc26830b9ea2ec966c151ab4c020
       context: .
-      target: staging
+      target: staging # La costruzione della build senza BuildKit sembra non funzionare come ci si aspetta, tuttavia poi nel container ci sono le cose giuste.
     working_dir: /data-staging-1
     entrypoint: '/bin/bash'
     command: -c 'sleep infinity'
     ports:
       - '9090:9090'
+

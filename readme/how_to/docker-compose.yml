@@ -1,6 +1,0 @@
-version: '3.6' # docker-compose config
-services:
-  qoturnix:
-    build:
-      context: '.'
-      target: 'staging' # La costruzione della build senza BuildKit sembra non funzionare come ci si aspetta, tuttavia poi nel container ci sono le cose giuste.

@@ -19,3 +19,12 @@ services:
       - ./prometheus.yaml:/etc/prometheus.yaml
     ports:
       - 9090:${PROMETHEUS_HOST_PORT}
+  portainer:
+    image: portainer/portainer-ce
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    ports:
+      - 9000:${PORTAINER_HOST_PORT}
+volumes:
+  portainer_data:
