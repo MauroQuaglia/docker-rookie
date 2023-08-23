@@ -1,15 +1,36 @@
+# https://github.com/compose-spec/compose-spec/blob/master/00-overview.md
+# E' evidente che ci sono delle cache in giro quindi sempre meglio usare l'opzione --no-cache altrimenti ho notato che a volte non vede delle modifiche
+# Tipo tolgo un file da una directory in un volume e lui continua a vederlo
+# docker-compose up --build --no-cache -d
+
+# IL buon pattern:
+# docker-compose config
+# docker-compose build --no-cache
+# docker-compose up -d
+# docker container exec -it qoturnix-7 /bin/bash
+# https://docs.docker.com/compose/compose-file/compose-file-v3/
 version: '3.6' # docker-compose config
 services:
   qoturnix:
-    build: # E' meglio dargli già una immagine compilata perché se la compila lui se ne sbatte del file .dockerignore perché è un tool separato che non legge il dockerigonre! Se invece faccio un "docker image build" questo legge il .dockerigonre e fa la cosa corretta!
-           # Per garantire che i tuoi file non desiderati siano esclusi dalla build dell'immagine Docker, dovresti configurare il tuo file .dockerignore correttamente e quindi utilizzare il comando docker build per creare l'immagine, se necessario, prima di utilizzarla con Docker Compose.
+    build: # Fare sempre la prova del container per vedere se ha seguito le indicazioni del file .dockerignore.
       args:
         - UBUNTU=ubuntu@sha256:b060fffe8e1561c9c3e6dea6db487b900100fc26830b9ea2ec966c151ab4c020
       context: .
       target: staging # La costruzione della build senza BuildKit sembra non funzionare come ci si aspetta, tuttavia poi nel container ci sono le cose giuste.
-    working_dir: /data-staging-1
+    container_name: qoturnix-7 # Do un nome al container così che mi torna più comodo per: "docker container exec -it qoturnix-7 /bin/bash"
+    working_dir: /data-staging-4
     entrypoint: '/bin/bash'
     command: -c 'sleep infinity'
     ports:
       - '9090:9090'
-
+    volumes: # https://github.com/compose-spec/compose-spec/blob/master/07-volumes.md
+      # "bind-mount" da host-dir A container-dir.
+      # Occhio che qui non c'è condivisione sullo Swarm, la directory è sul container.
+      # Importante, il path dell'host deve essere assoluto o con il . per dire che è quello relativo alla directory corrente! Altrimenti non da errore ma non funziona...
+      - ./log:/data-staging-3/
+      # "volume" gestito in automatico da Docker.
+      # Qui c'è condivisione sullo Swarm.
+      # Importante, il volume deve poi essere definito con tra le entry principali del docker-compose (qoturnix-gemset:).
+      - qoturnix-gemset:/data-staging-4/
+volumes:
+  qoturnix-gemset:

@@ -2,3 +2,4 @@
 docker-compose.yml
 Dockerfile
 text-2.txt
+log

@@ -17,6 +17,9 @@ COPY text-1.txt /data-staging-1
 RUN mkdir -p /data-staging-2
 COPY . /data-staging-2
 
+RUN mkdir -p /data-staging-3
+RUN mkdir -p /data-staging-4
+
 # CMD ["/bin/bash", "sleep infinity"]
 
 # Due "FROM base" non vanno bene!
