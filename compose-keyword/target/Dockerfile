@@ -2,6 +2,9 @@
 ARG UBUNTU="ubuntu@sha256:b060fffe8e1561c9c3e6dea6db487b900100fc26830b9ea2ec966c151ab4c020"
 FROM $UBUNTU AS base
 
+RUN apt-get update \
+    && apt-get install nano -y
+
 COPY . /data-base-1
 
 FROM base AS development

@@ -1,3 +1,4 @@
+# https://docs.docker.com/compose/compose-file/
 # https://github.com/compose-spec/compose-spec/blob/master/00-overview.md
 # E' evidente che ci sono delle cache in giro quindi sempre meglio usare l'opzione --no-cache altrimenti ho notato che a volte non vede delle modifiche
 # Tipo tolgo un file da una directory in un volume e lui continua a vederlo
@@ -8,9 +9,20 @@
 # docker-compose build --no-cache
 # docker-compose up -d
 # docker container exec -it qoturnix-7 /bin/bash
+# docker compose down --remove-orphans
 # https://docs.docker.com/compose/compose-file/compose-file-v3/
 version: '3.6' # docker-compose config
 services:
+  q-alpine:
+    build:
+      context: ../target-alpine
+    container_name: q-alpine-7
+    stdin_open: true
+  q-debian:
+    build:
+      context: ../target-debian
+    container_name: q-debian-7
+    stdin_open: true
   qoturnix:
     build: # Fare sempre la prova del container per vedere se ha seguito le indicazioni del file .dockerignore.
       args:
@@ -18,11 +30,15 @@ services:
       context: .
       target: staging # La costruzione della build senza BuildKit sembra non funzionare come ci si aspetta, tuttavia poi nel container ci sono le cose giuste.
     container_name: qoturnix-7 # Do un nome al container così che mi torna più comodo per: "docker container exec -it qoturnix-7 /bin/bash"
+    environment: # vengono impostate queste variabili di ambiente nel container
+      - PASSWORD=my-password # echo $PASSWORD
+      - USERNAME=my-username # echo USERNAME
     working_dir: /data-staging-4
     entrypoint: '/bin/bash'
-    command: -c 'sleep infinity'
+    #command: -c 'sleep infinity' # Questo comando verrebbe eseguito all'interno del container mantenendolo attivo. Tuttavia  si può mantenere il container attivo con l'opzione stdin_open: true.
+    stdin_open: true #consente di inviare input da tastiera al processo all'interno del contenitore. Consente di non specificare il command sopra che infatti ho commentato
     ports:
-      - '9090:9090'
+      - '9090:9090' #host:container
     volumes: # https://github.com/compose-spec/compose-spec/blob/master/07-volumes.md
       # "bind-mount" da host-dir A container-dir.
       # Occhio che qui non c'è condivisione sullo Swarm, la directory è sul container.
@@ -32,5 +48,13 @@ services:
       # Qui c'è condivisione sullo Swarm.
       # Importante, il volume deve poi essere definito con tra le entry principali del docker-compose (qoturnix-gemset:).
       - qoturnix-gemset:/data-staging-4/
+    depends_on:
+      - q-alpine
+    extra_hosts: # aggiunge host al file /etc/hosts nel container
+      - "somehost:162.242.195.82"
+      - "otherhost:50.31.209.229"
+      # Così che poi nel file /etc/hosts avremo
+      # 162.242.195.82  somehost
+      # 50.31.209.229   otherhost
 volumes:
   qoturnix-gemset:
