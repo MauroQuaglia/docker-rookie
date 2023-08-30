@@ -18,11 +18,22 @@ services:
       context: ../target-alpine
     container_name: q-alpine-7
     stdin_open: true
-  q-debian:
-    build:
-      context: ../target-debian
-    container_name: q-debian-7
-    stdin_open: true
+  postgres:
+    image: postgres:13-alpine
+    # Questi ci vogliono altrimenti il container muore subito. Almeno la password deve essere definita!
+    environment:
+      POSTGRES_USER: xpuser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: kronos_development
+    volumes:
+      - /var/lib/postgresql/data
+    expose:
+      - 5432
+ # q-debian:
+ #   build:
+ #     context: ../target-debian
+ #   container_name: q-debian-7
+ #   stdin_open: true
   qoturnix:
     build: # Fare sempre la prova del container per vedere se ha seguito le indicazioni del file .dockerignore.
       args:
@@ -49,7 +60,7 @@ services:
       # Importante, il volume deve poi essere definito con tra le entry principali del docker-compose (qoturnix-gemset:).
       - qoturnix-gemset:/data-staging-4/
     depends_on:
-      - q-alpine
+      - postgres
     extra_hosts: # aggiunge host al file /etc/hosts nel container
       - "somehost:162.242.195.82"
       - "otherhost:50.31.209.229"
