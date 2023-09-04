@@ -5,7 +5,9 @@ RUN apk update -qq \
       && apk add --no-cache bash nano \
       && rm -rf /var/cache/apk/*
 
-ENV MY_NAME="Jhon Dash"
+# echo $MY_NAME
+#ENV MY_NAME="Jhon Dash" con o senza = non cambia
+ENV MY_NAME "Jhon Dash"
 
 # Metto tutti i RUN ma dovrebbe essere una unica istruzione...
 
@@ -30,6 +32,7 @@ RUN adduser \
     -S dockeruser
 
 RUN mkdir -p /app && chown dockeruser:dockergroup /app
+RUN setcap cap_setgid=ep /app
 
 # whoami
 USER dockeruser
