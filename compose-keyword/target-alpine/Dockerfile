@@ -32,7 +32,6 @@ RUN adduser \
     -S dockeruser
 
 RUN mkdir -p /app && chown dockeruser:dockergroup /app
-RUN setcap cap_setgid=ep /app
 
 # whoami
 USER dockeruser

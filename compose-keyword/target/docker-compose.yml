@@ -17,7 +17,11 @@ services:
     build:
       context: ../target-alpine
     container_name: q-alpine-7
+    image: 'q-alpine-image-name'
     stdin_open: true
+    secrets:
+      - source: host_text
+        target: /home/dockeruser/host_text
   postgres:
     image: postgres:13-alpine
     # Questi ci vogliono altrimenti il container muore subito. Almeno la password deve essere definita!
@@ -31,11 +35,11 @@ services:
       - /var/lib/postgresql/data
     expose:
       - 5432
-  q-debian:
-    build:
-      context: ../target-debian
-    container_name: q-debian-7
-    stdin_open: true
+  #q-debian:
+  #  build:
+  #    context: ../target-debian
+  #  container_name: q-debian-7
+  #  stdin_open: true
   qoturnix:
     build: # Fare sempre la prova del container per vedere se ha seguito le indicazioni del file .dockerignore.
       args:
@@ -43,6 +47,7 @@ services:
       context: .
       target: staging # La costruzione della build senza BuildKit sembra non funzionare come ci si aspetta, tuttavia poi nel container ci sono le cose giuste.
     container_name: qoturnix-7 # Do un nome al container così che mi torna più comodo per: "docker container exec -it qoturnix-7 /bin/bash"
+    image: 'qoturnix-image-name'
     environment: # vengono impostate queste variabili di ambiente nel container
       - PASSWORD=my-password # echo $PASSWORD
       - USERNAME=my-username # echo USERNAME
@@ -71,3 +76,7 @@ services:
       # 50.31.209.229   otherhost
 volumes:
   qoturnix-gemset:
+
+secrets:
+  host_text:
+    file: text-1.txt
