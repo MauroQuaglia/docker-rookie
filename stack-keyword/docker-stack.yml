@@ -1,0 +1,33 @@
+version: '3.4'
+services:
+  app:
+    image: ${RELEASE}
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 3s
+        order: start-first
+        failure_action: rollback
+        monitor: 1m
+      restart_policy:
+        max_attempts: 3
+    entrypoint: /app/docker-entrypoint.sh
+    command: bundle exec puma -C config/puma.rb
+    secrets:
+      - source: kkk_service_master_key
+        target: /master.key
+      - source: kkk_service_production_key
+        target: /production.key
+    ports:
+      - 3010:3010
+    working_dir: /app/
+    stdin_open: true
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+secrets:
+  kkk_service_master_key:
+    external: true
+  kkk_service_production_key:
+    external: true

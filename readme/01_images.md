@@ -76,7 +76,7 @@ COPY --from=appserver ... mi prendo solo il file bbb.txt
 * Sono additivi per cui due RUN di fila creano due layer distinti:
  * `RUN apt-get update`
  * `RUN apt-get clean`
-* Il secondo RUN non pulisce i dati delprimo layer, anzi crea  un altro layer!
+* Il secondo RUN non pulisce i dati del primo layer, anzi crea  un altro layer!
  * Quello che si vuole fare in realtà sarebbe: `RUN apt-get update && RUN apt-get clean`
 
 
@@ -124,3 +124,28 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
   * Per vedere tutti i dettagli di un'immagine.
 * `docker manifest inspect busybox` (per esempio busybox)
   * Fa vedere le piattaforme e SO disponibili compatibili con quell'immagine che sto scaricando.
+
+# Per costruire immagine - cose da fare
+* I comandi `apt-get update` e `apt-get upgrade` non rendono le immagini fisse.
+* Per una immagine di base meglio usare uno sha256 così non ci sono dubbi.
+* Esempio di comando `DOCKER_BUILKIT=1 docker image build -t x:y . --no-cache`:
+  * `DOCKER_BUILKIT=1`: per utilizzare BuildKit (default è `0` quindi disabilitato)
+  * `-t: repository:immagine`
+  * `.`: 
+    * E' il contesto di build, quello che c'è in questa directory viene mandato al server dockerd per costruire l'immagine. 
+    * Il file `.dockerignore` permette di non inviare più file del necessario. 
+    * Se il `Dockerfile` non si trova nella directory corrente posso usare il flag `-f`.
+  * `--no-cache`
+    * Esempio se ho un `RUN apt-get update|upgrade` nel `Dockerfile`, la prima volta lo fa veramente, poi se non faccio altri cambamenti al `Dockefile` vengono usati i layer in cache, perché Docker non vede altri cambiamenti del digest del `Dockerfile`.
+    * In questo modo esegue veramente anche il `RUN apt-get update|upgrade`.
+* E' bene tenere le immagine piccole, per cui di solito si usa farle partire da una Alpine Linux.
+  * Questa contiene la `/bin/sh` invece della `/bin/bash` che è più pesante. 
+* Ricordarsi che i layer sono __sempre__ additivi.
+  * Sebbene si possano mascherare i file di strati precedenti, questi non si possono cancellare.
+  * Non si possono creare immagini più piccole semplicemente cancellando i file aggiunti in passi precedenti.
+  * L'unica cosa che posso fare è rimuovere i file prima di salvare il layer: `RUN apk install -y httpd && RUN apk clean all`.
+* La Multi-Stage-Build è un altro trucco per tenere l'immagine piccola (1 `Dockerfile`, + `FROM`)
+  * Mi posso spingere oltre, anche prendendo pezzi di più immagini costruite con `Dockerfile` diversi ma serve abilitare il plug-in `docker-buildx` che supporta contesti di build multipli.
+* Per controllare i dati e il peso della mia immagine:
+  * `docker image inspect x:y`
+  * `docker image history x:y`

@@ -11,6 +11,7 @@
 # docker container exec -it qoturnix-7 /bin/bash
 # docker compose down --remove-orphans
 # https://docs.docker.com/compose/compose-file/compose-file-v3/
+# docker container exec -it q-alpine-7 /bin/bash
 version: '3.6' # docker-compose config
 services:
   q-alpine:
