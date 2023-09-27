@@ -1,7 +1,7 @@
 # Containers
 * E' il runtime di un'immagine.
 * Il comando di base è `docker container run -it <image> <app>` (`docker container run -it ubuntu:latest /bin/bash`)
-* Il container rimane attivo ficnhé l'app che sta esegundo (PID = 1) rimane in esecuzione.
+* Il container rimane attivo finché l'app che sta esegundo (PID = 1) rimane in esecuzione.
 * `docker container stop ID\name` -> fermo il processo con PID = 1 nel container.
 * `docker container start ID\name`
 * `docker container rm ID\name -f` -> il `-f` è brutale meglio fare prima `stop` e poi `rm` del container per dare tempo al processo (max 10 secondi) di terminare. Se in 10 secondi non termina in automatico viene fatto kill del processo e termina per forza. Di fatto questo comando uccide il processo con PID = 1 e quando non c'è più nessun processo nel container, il container muore.
@@ -54,3 +54,15 @@
 * `docker container stop 78baeb5f6588` + `docker container rm 78baeb5f6588`
   * Per rimuovere il container è meglio fare prima stop.
 * `docker container diff` bello perché fa vedere la differenza del sistema opertativo prima e dopo il lancio di un comando così si può vedere se quel comando ha aggiunto o modificato cose nel container.
+
+# Per costruire container - cose da fare
+* I setting del `Dockerfile` sono i default che poi ogno container può sovrascrivere a suo piacimento.
+* Se faccio `mount` dentro un container posso vedere tutto ciò che è linkato come risorsa dall'host (`/var/lib/docker/container`) al container
+  * ES: `/dev/sda9` (che sta nel filesystem dell'host) on `/etc/hostname` (che sta nel container) 
+* `--name` dare un nome al container
+* `--label` per aggiungere dei metadati al container oltre a quelli che eredita dall'immagine
+* `--user` (il default è root) per cambiare l'utente all'interno del container
+* `--hostname` per dare un hostname al container invece dell'ID alfanumerico
+* `--rm` per buttare il container una volta che sono uscito
+* `-i` per abilitare una sessione interattiva e tenere lo STDIN aperto
+* `-t` per allocare una tty

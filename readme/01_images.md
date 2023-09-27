@@ -146,6 +146,11 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
   * L'unica cosa che posso fare è rimuovere i file prima di salvare il layer: `RUN apk install -y httpd && RUN apk clean all`.
 * La Multi-Stage-Build è un altro trucco per tenere l'immagine piccola (1 `Dockerfile`, + `FROM`)
   * Mi posso spingere oltre, anche prendendo pezzi di più immagini costruite con `Dockerfile` diversi ma serve abilitare il plug-in `docker-buildx` che supporta contesti di build multipli.
+  * Potrebbe essere utile il `FROM scratch`
 * Per controllare i dati e il peso della mia immagine:
   * `docker image inspect x:y`
   * `docker image history x:y`
+* BuildKit ha anche la funzionalità di montare e poi smontare un layer di supporto per velocizzare la build. Questa funzionalità prende il nome di Directory Caching.
+  * `RUN --mount=type=cache ...`
+* Quando uso il comando `docker image build` posso specificare anche il `--target` se volgio provare a fare build di development, produzione, eccetere.
+* Per capire quale immagine scaricare il server docker prima scarica il manifest di una immagine, lo legge, e poi in base all'architettura del sistema scarica l'immagine corretta.
