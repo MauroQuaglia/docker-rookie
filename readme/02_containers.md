@@ -66,3 +66,20 @@
 * `--rm` per buttare il container una volta che sono uscito
 * `-i` per abilitare una sessione interattiva e tenere lo STDIN aperto
 * `-t` per allocare una tty
+* `--dns`, `--dns-search` per modificare il file `resolv.conf` che di default è uguale a quello dell'host. FQDN --> DNS(`resolv.conf`) --> IP
+* `-v`, `--mounbt` per montare volumi. 
+  * Usare i path completi. 
+  * Di default i volumi vengono montati read-write.
+* Resource Quotas (devo sfruttare i `cgroup` = gestione delle risorse dei processi per il container)
+  * CPU SHARES: `-cpu-share`, 1024 = 100%, 512 significa che il container non può usare più del 50% delle risorse della CPU. Ha effetto solo quando c'è competizione sulle risorse. 
+  * CPU PINNING: `--cpuset-cpus=[0-8]` vincolare un container a girare solo su alcuni core e non su latri.
+  * `--cpus` è il comando più moderno
+  * `--memory`, `--memory-swap` controllo e limitazione sull'uso della memoria
+  * block I/O limit: `--device-read-iops`, ...
+* `--read-only`: se voglio essere sicuro che il container non scriva nel file system
+* ulimits (prima dell'avvento dei cgroupo ma ancora validi e usati)
+  * `ulimit -a` sull'host per vedere su cosa posso avere effetto 
+  * Posso mettere un default al `dockerd` per fare in modo che tutti i container partano con delle limitazioni. Volendo posso anche impostarlo al singolo container.
+* `--restart` è la politica di restart del container.
+* `pause` e `unpause`, posso mettere in pausa un attimo un container, per liberare un po' di risorse e poi riabilitarlo.
+* `run (-it da non mettere)`: posso vedere l'output del container direttamente sulla console
