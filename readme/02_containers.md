@@ -83,3 +83,6 @@
 * `--restart` è la politica di restart del container.
 * `pause` e `unpause`, posso mettere in pausa un attimo un container, per liberare un po' di risorse e poi riabilitarlo.
 * `run (-it da non mettere)`: posso vedere l'output del container direttamente sulla console
+* `--init`: lancia `tini` (PID=1) nel container che è un leggerissimo sistema operativo che si occupa di eliminare eventuali processi zoombie.
+  * PID=1 è colui che in Linux si occupa anche degli zoombie.
+* `diff`: utile per vedere se il processo  principale effettua degli Added/Changed di file o directory rispetto al filesystem originale.

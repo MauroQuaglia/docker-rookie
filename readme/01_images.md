@@ -148,8 +148,8 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
   * Mi posso spingere oltre, anche prendendo pezzi di più immagini costruite con `Dockerfile` diversi ma serve abilitare il plug-in `docker-buildx` che supporta contesti di build multipli.
   * Potrebbe essere utile il `FROM scratch`
 * Per controllare i dati e il peso della mia immagine:
-  * `docker image inspect x:y`
-  * `docker image history x:y`
+  * `docker image inspect x:y` (dati immagine)
+  * `docker image history x:y` (anche con `--no-trunc`) (peso immagine)
 * BuildKit ha anche la funzionalità di montare e poi smontare un layer di supporto per velocizzare la build. Questa funzionalità prende il nome di Directory Caching.
   * `RUN --mount=type=cache ...`
 * Quando uso il comando `docker image build` posso specificare anche il `--target` se volgio provare a fare build di development, produzione, eccetere.
