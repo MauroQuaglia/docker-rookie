@@ -37,3 +37,10 @@ Dopo aver sistemato le precedenti possiamo costruire lo Swarm.
 Dallo Swarm lancio `docker info | grep -i "swarm"`:
 -> "Swarm: active" significa che sto usando lo Swarm Mode, l'ultima è più completa versione dello Swarm
 -> "" oppure "Swarm: inactive" significa che sto usando lo Swarm Classic, la prima e deprecata versione dello Swarm.
+
+# Development
+* Posso creare uno Swarm in locae e poi buttarlo a scopo di test:
+ * `docker warm init` -> creo
+ * `docker swarm leave --force` -> distruggo
+* Per esempio faccio un init dello Swarm, e un deploy del tipo `docker stack deploy -c docker-stack.yml mq7`
+  * Bello anche fare partire Portainer in locale perché si possono vedere molte cose e poi provare.
