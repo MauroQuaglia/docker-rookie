@@ -54,7 +54,7 @@
   * Dato che l'immagine la fa il server (Il client invia al server i file per fare la build), io potrei deployare una mia immagine su un host remoto.
 * La configurazione del Server è in `/etc/docker/daemon.json`
 * Guardare qui /etc/apt/sources.list.d per vedere da dove apt va a scaricare il pacchetto di docker.
-* 
+
 # Comandi
 * Per vedere che la comunicazione tra Client e Server funzioni correttamente:
   `docker --info`

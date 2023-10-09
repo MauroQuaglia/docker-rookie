@@ -49,3 +49,4 @@ RUN mkdir -p /data-staging-4
 # Riassumendo
   # L'output della compilazione dell'immagine è sbagliato a meno che non si usi BuildKit... ma poi nel container le cose sono giuste!
   # Sembra un problema legato solo all'output della compilazione dell'immagine!
+  # La documentazione ufficiale conferma che effettivamente è così!

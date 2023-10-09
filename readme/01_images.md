@@ -2,7 +2,7 @@
 * L'immagine contiene codice applicativo, dipendenze e costrutti del SO. Tutto quello che serve per avviare un'applicazione. In generale l'immagine è una somma di read-only layer indipendenti.
 * Pensiamola come a un oggetto che contiene un filesystem di un SO, un'applicazione e tutte le sue dipendenze.
 * Nel mondo Docker una immagine è un container fermo.
-* Uno dev la può pensare come a una classe.
+* Un dev la può pensare come a una classe.
 
 ## Registry
 * Il principale, ma non unico, Image Registry è Docker Hub. Un Image Registry può avere più Repository da cui scaricare le immagini. Nel Docker Hub ci sono:

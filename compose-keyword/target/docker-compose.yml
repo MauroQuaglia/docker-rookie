@@ -51,7 +51,7 @@ services:
     image: 'qoturnix-image-name'
     environment: # vengono impostate queste variabili di ambiente nel container
       - PASSWORD=my-password # echo $PASSWORD
-      - USERNAME=my-username # echo USERNAME
+      - USERNAME=my-username # echo $USERNAME
     working_dir: /data-staging-4
     entrypoint: '/bin/bash'
     #command: -c 'sleep infinity' # Questo comando verrebbe eseguito all'interno del container mantenendolo attivo. Tuttavia  si può mantenere il container attivo con l'opzione stdin_open: true.
@@ -65,7 +65,7 @@ services:
       - ./log:/data-staging-3/
       # "volume" gestito in automatico da Docker.
       # Qui c'è condivisione sullo Swarm.
-      # Importante, il volume deve poi essere definito con tra le entry principali del docker-compose (qoturnix-gemset:).
+      # Importante, il volume deve poi essere definito tra le entry principali del docker-compose (qoturnix-gemset:).
       - qoturnix-gemset:/data-staging-4/
     depends_on:
       - postgres
