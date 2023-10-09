@@ -20,6 +20,9 @@ services:
     container_name: q-alpine-7
     image: 'q-alpine-image-name'
     stdin_open: true
+    # Oltre ad avere la variabile disponibile per il docker-compose ($A) cosa che avviene di default, con env_file questa viene impostata anche come variabile di ambiente del container.
+    env_file:
+      - .env
     secrets:
       - source: host_text
         target: /home/dockeruser/host_text

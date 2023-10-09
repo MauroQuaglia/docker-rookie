@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+  test:
+    container_name: 'test'
+    image: 'nginx:latest'
+    ports:
+      - 8080:${MY_PORT}
+    env_file:
+      - .env
