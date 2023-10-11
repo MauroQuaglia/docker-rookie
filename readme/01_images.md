@@ -154,3 +154,4 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
   * `RUN --mount=type=cache ...`
 * Quando uso il comando `docker image build` posso specificare anche il `--target` se volgio provare a fare build di development, produzione, eccetere.
 * Per capire quale immagine scaricare il server docker prima scarica il manifest di una immagine, lo legge, e poi in base all'architettura del sistema scarica l'immagine corretta.
+* Una buona cosa è specificare sempre un utente nel Dockerfile.

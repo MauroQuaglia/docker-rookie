@@ -11,4 +11,4 @@ RUN adduser \
     -G dockergroup \
     -S dockeruser
 
-USER dockeruser
+USER dockeruser:dockergroup

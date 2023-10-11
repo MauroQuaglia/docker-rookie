@@ -5,7 +5,7 @@
 * Per il deploy `docker-compose up`
   * `-f` per un file con un nome custom
   * `-d` per farlo partire in background
-* Ogni servizio parte in un container, in development il concetto si servizio e container è praticamente simile.
+* Ogni servizio parte in un container, in development il concetto di servizio e container è praticamente simile.
 * Il tool Docker compose (command line docker-compose) è un tool esterno imbullonato sul Docker Engine e deve essere installato esplicitamente sul Docker host.
 
 ## keywords

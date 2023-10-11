@@ -36,6 +36,31 @@
 * Per pulire tutti i container con forza bruta: `docker container rm $(docker container ls -aq) -f`
     * Cancella tutti i container, sia quelli attivi che quelli fermi (stopped)
 
+## Esempio di uso di --pid=host
+```
+docker container run --name aaa -d ubuntu:latest /bin/bash -c "sleep infinity"
+Console: ps -aux | grep infinity --color
+docker container exec -it aaa /bin/bash
+Container: ps -aux | grep infinity --color
+
+docker container run --name bbb -d --pid=host ubuntu:latest /bin/bash -c "sleep infinity"
+Console: ps -aux | grep infinity --color
+docker container exec -it bbb /bin/bash
+Container: ps -aux | grep infinity --color
+```
+
+# Rootles mode (alcune informazioni)
+* Quando lancio il container con `-u`, i l processo nel container viene lanciato con quell'utente, che non è `root`. Tuttavia il processo che istanzia
+il container (lanciato dal demone) viene lanciato con utente `root`.
+Con il Rootless mode anche quest'ultimo processo viene lanciato senza i privilegi di `root`. Questo migliora la sicurezza.
+* Il Rootless serve per lanciare il container senza i privilegi di `root`, ma non è banale da usare, servono alcuni setup e l'attivazione del `linger`!
+
+# Capabilities
+* Se uso `--privileged=true` sto dando al container molto potere. 
+  * Piuttosto è meglio usare la capabilities `--cap-add` (si possono anche rimuovere con `--cap-drop`) 
+  * Per un controllo sempre più raffinato, insieme alle capabilities si può usare il Secure Computing Mode (`seccomp`). 
+  * Per esempio un `--cap-add=SYS_ADMIN --security-opt seccomp=my-file-configuration.json` dove `--cap-add=SYS_ADMIN` da molto potere, ma `--security-opt seccomp=my-file-configuration.json` controlla ogni singola azione che si può fare.
+
 ## Comandi
 * Per avere informazioni dettagliate sulla configurazione, sul runtime e i metadati: `docker container inspect ID|nome`
 * `docker container ls`
@@ -86,3 +111,4 @@
 * `--init`: lancia `tini` (PID=1) nel container che è un leggerissimo sistema operativo che si occupa di eliminare eventuali processi zoombie.
   * PID=1 è colui che in Linux si occupa anche degli zoombie.
 * `diff`: utile per vedere se il processo  principale effettua degli Added/Changed di file o directory rispetto al filesystem originale.
+* `--pid=host`: il container condivide il namespace dei PID dell'host così che vedo lo stesso PID da dentro e da fuori il container.
