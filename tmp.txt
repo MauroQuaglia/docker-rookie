@@ -7,3 +7,28 @@ docker container run --name bbb -d --pid=host ubuntu:latest /bin/bash -c "sleep 
 Console: ps -aux | grep infinity --color
 docker container exec -it bbb /bin/bash
 Container: ps -aux | grep infinity --color
+
+
+---------- lo metto sulla rete bridge -------------------
+
+docker container run --rm -it -p 8080:80 --name=mq nginx:latest
+127.0.0.1:8080 ---> nginx
+
+ps -aux |grep  proxy
+root       34184  0.0  0.0 1671720 5292 ?        Sl   17:24   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 10.45.0.2 -container-port 80
+root       34192  0.0  0.0 1745964 7404 ?        Sl   17:24   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 8080 -container-ip 10.45.0.2 -container-port 80
+Vedo il mapping di IPV4 e IPV6.
+
+
+
+
+---------- lo metto sulla host -------------------
+
+
+Non serve nessun mapping di porte!
+docker container run --rm -it --name=mq --network=host nginx:latest
+127.0.0.1:80 ---> nginx
+
+ps -aux |grep  proxy
+NEssun mapping!
+------------------------------------
