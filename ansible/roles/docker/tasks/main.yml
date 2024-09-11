@@ -1,0 +1,40 @@
+---
+# https://docs.docker.com/engine/install/debian/
+
+- name: "Uninstall old version packages"
+  apt:
+    state: absent
+    name:
+      - "docker.io"
+      - "docker-compose"
+      - "docker-doc"
+      - "podman-docker"
+      - "containerd"
+      - "runc"
+
+- name: "Install Docker requirements packages"
+  apt:
+    update_cache: true
+    name:
+      - "gnupg2"
+
+- name: "Install Docker apt key"
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+
+- name: "Add Docker apt repository"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable"
+    filename: 'docker'
+
+- name: "Install Docker"
+  apt:
+    update_cache: true
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+      - "docker-buildx-plugin"
+      - "docker-compose-plugin"
+      - "docker-ce-rootless-extras"
+...
