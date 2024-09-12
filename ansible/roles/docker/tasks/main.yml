@@ -38,7 +38,15 @@
       - "docker-compose-plugin"
       - "docker-ce-rootless-extras"
 
-- name: "Add vagrant user to docker group"
+- name: "Copy docker daemon configuration"
+  copy:
+    src: "daemon.json"
+    dest: "/etc/docker/daemon.json"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+
+- name: "Add vagrant user to docker group io order to use /var/run/docker.sock"
   user:
     name: "vagrant"
     group: "docker"

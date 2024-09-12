@@ -3,6 +3,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define('pg-vagrant') do |current|
     current.vm.network('forwarded_port', id: 'ssh', guest: 22, host: 2222, auto_correct: false)
+    # current.vm.network('forwarded_port', id: 'tcp', guest: 2375, host: 12375, protocol: "tcp", auto_correct: false)
     current.vm.hostname = 'pg-vagrant'
 
     current.vm.provision('ansible') do |ansible|
