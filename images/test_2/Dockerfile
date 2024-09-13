@@ -5,6 +5,7 @@ FROM ubuntu:latest
 
 RUN apt update
 RUN apt install adduser # Mi serve poi per aggiungere gruppo e utente
+RUN apt install passwd # Mi serve poi per aggiungere gruppo e utente
 
 # Sovrascrivibili con --build-arg a=b
 # Disponibili solo durante il processo di build per evitare duplicazione.
@@ -24,10 +25,3 @@ RUN addgroup --gid 1001 dockeruser
 
 # Aggiungo un utente per il gruppo dockeruser
 RUN adduser --home /home/mauro --shell /bin/bash --uid 1001 --gid 1001 dockeruser
-#RUN echo "dockeruser:dockeruser" | chpasswd
-#RUN mkdir -p /app && chown dockeruser:dockeruser /app
-
-#USER dockeruser
-
-
-#USER mauro

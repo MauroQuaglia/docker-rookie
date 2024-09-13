@@ -46,8 +46,24 @@
     group: "root"
     mode: "0600"
 
-- name: "Add vagrant user to docker group io order to use /var/run/docker.sock"
+- name: "Add vagrant user to docker group io order to use '/var/run/docker.sock'"
   user:
     name: "vagrant"
     group: "docker"
+
+- name: "Create '/home/vagrant/.docker' directory for vagrant user"
+  file:
+    path: "/home/vagrant/.docker"
+    state: "directory"
+    owner: "vagrant"
+    group: "docker"
+    mode: "0700"
+
+- name: "Add credential for vagrant user to login automatically on DockerHub"
+  copy:
+    src: "config.json"
+    dest: "/home/vagrant/.docker/config.json"
+    owner: "vagrant"
+    group: "docker"
+    mode: "0600"
 ...
