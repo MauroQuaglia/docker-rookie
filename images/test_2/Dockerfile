@@ -1,27 +1,43 @@
-# docker image build -t doqer:test_2 .
-# docker container run --rm -it doqer:test_2 /bin/bash
-
 FROM ubuntu:latest
 
-RUN apt update
-RUN apt install adduser # Mi serve poi per aggiungere gruppo e utente
-RUN apt install passwd # Mi serve poi per aggiungere gruppo e utente
+ARG mauro="MAURO"
+# Se mauro è impostata il valore è quello di mauro altrimenti il valore è "mq7"
+ENV mrx=${mauro:-"mq7"}
 
-# Sovrascrivibili con --build-arg a=b
-# Disponibili solo durante il processo di build per evitare duplicazione.
-ARG name="Mauro"
-ARG surname="Quaglia"
 
-# Metadati che posso aggiungere all'immagine.
-LABEL "mantainer"="$name $surname"
 
-# Utente che eseguirà i comandi nel container.
-# Nell'inspect dell'immagine si vede che ho impostato "root" altrimenti si vede "". Poi nel container è sempre root però.
-USER root
+# Default
+USER "root:root"
 
-# Creo gruppo dockeruser e gli assegno un id che vale 1001
-# cat /etc/group
-RUN addgroup --gid 1001 dockeruser
 
-# Aggiungo un utente per il gruppo dockeruser
-RUN adduser --home /home/mauro --shell /bin/bash --uid 1001 --gid 1001 dockeruser
+# Modo bello di fare più comandi in un layer solo.
+RUN <<EOF
+apt update
+apt install -y curl
+apt clean
+EOF
+
+# Copia anche da sorgenti remote. Quando posso uso la COPY, se proprio devo usa la ADD:
+ADD https://www.google.com/robots.txt /tmp
+
+# Non la espone veramente, ma è come una sorta di documentazione che esprime l'intento che dovrebbe avere il container.
+# Posso anche mettere più istruzioni EXPOSE
+# Nel container posso usare --port 80:80, oppure -P che mappa una porta libera a caso dell'host sull'80 del container.
+EXPOSE "80/tcp"
+
+
+
+RUN mkdir "/mydata"
+RUN echo "hello world" > /mydata/greeting.txt
+# Docker crea un volume anonimo associato alla directory /mydata all'interno del container
+# Il docker volume ls farà vedere questo volume (anonimo)
+VOLUME ["/mydata"]
+
+
+# CMD exit 1 se lo voglio fare fallire
+HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD exit 0
+
+
+# Se voglio fare override: docker container run --rm -it --entrypoint bin/bash mq7:latest
+ENTRYPOINT ["echo"]
+CMD ["mauro quaglia"]
