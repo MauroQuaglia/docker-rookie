@@ -86,6 +86,13 @@ COPY --from=appserver ... mi prendo solo il file bbb.txt
 * `docker login`
 * `docker image tag x:y mq/x:y` per esempio aggiungo un tag all'immagine con il nome del mio repository `mq`.
 * `docker image push mq/x:y`
+* Per fare la login al DockerHub: `docker login docker.io -u mauroquaglia`
+  * Posso scaricare tutto liberamente, il vantaggio  di loggarmi è che è più veloce e che posso scaricare più immagini.
+  * Se non mi loggo le immagini si possono scaricare ma è più lento e c'è un limite giornaliero sul numero delle immagini scaricabili.
+* Per caricare una immagine sul mio DockerHub devo taggare l'immagine per bene.
+  * Il path è: `registry/repository/image:tag`
+  * `docker image tag doqer:test_1 mauroquaglia/example:hello`
+  * `docker push docker.io/mauroquaglia/example:hello`
 
 ## SQUASH IMAGE (--squash)
 * Creo un immagine con più layer e alla fine faccio uno squash in un singolo layer.
@@ -152,6 +159,6 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
   * `docker image history x:y` (anche con `--no-trunc`) (peso immagine)
 * BuildKit ha anche la funzionalità di montare e poi smontare un layer di supporto per velocizzare la build. Questa funzionalità prende il nome di Directory Caching.
   * `RUN --mount=type=cache ...`
-* Quando uso il comando `docker image build` posso specificare anche il `--target` se volgio provare a fare build di development, produzione, eccetere.
+* Quando uso il comando `docker image build` posso specificare anche il `--target` se voglio provare a fare build di development, produzione, eccetere.
 * Per capire quale immagine scaricare il server docker prima scarica il manifest di una immagine, lo legge, e poi in base all'architettura del sistema scarica l'immagine corretta.
 * Una buona cosa è specificare sempre un utente nel Dockerfile.
