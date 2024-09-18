@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 
+# Sovrascrivibili con --build-arg al momento della build.
 ARG mauro="MAURO"
 # Se mauro è impostata il valore è quello di mauro altrimenti il valore è "mq7"
 ENV mrx=${mauro:-"mq7"}
