@@ -61,7 +61,7 @@
 
 - name: "Add credential for vagrant user to login automatically on DockerHub"
   copy:
-    src: "config.json"
+    src: "config.json.vault"
     dest: "/home/vagrant/.docker/config.json"
     owner: "vagrant"
     group: "docker"
