@@ -1,0 +1,19 @@
+---
+- name: "Create terminator configuration directory"
+  file:
+    path: "/home/{{ terminator_user }}/.config/terminator"
+    state: directory
+    mode: 0755
+    owner: "{{ terminator_user }}"
+    group: "{{ terminator_user }}"
+
+- name: "Copy terminator configuration"
+  copy:
+    src: "{{ item }}.config"
+    dest: "/home/{{ terminator_user }}/.config/terminator"
+    owner: "{{ terminator_user }}"
+    group: "{{ terminator_user }}"
+    mode: 0600
+  loop:
+    - docker_vinc
+...

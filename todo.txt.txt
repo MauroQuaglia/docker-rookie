@@ -1,7 +1,0 @@
-leggersi
-docker --help
-docker container --help
-docker container run --help
-...
-
-idem con immagini.

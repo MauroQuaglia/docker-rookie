@@ -1,0 +1,18 @@
+leggersi
+docker --help
+docker container --help
+docker container run --help
+...
+
+Terminator:
+https://gnome-terminator.readthedocs.io/en/latest/
+docker-vinc:
+* docker container ls -a
+* docker image ls -a
+* docker volume ls
+* docker network ls
+
+
+docker-monitor
+* sudo dmesg
+* docker system events
