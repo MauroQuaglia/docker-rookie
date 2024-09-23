@@ -1,4 +1,10 @@
 ---
+- name: "Install Terminator"
+  apt:
+    update_cache: true
+    name:
+      - "terminator"
+
 - name: "Create terminator configuration directory"
   file:
     path: "/home/{{ terminator_user }}/.config/terminator"
