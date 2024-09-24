@@ -11,3 +11,6 @@ docker container run \
 
 # root@3919ea1a76f2:/# mount | grep basket
 # tmpfs on /basket type tmpfs (rw,nosuid,nodev,noexec,relatime,size=262144k)
+
+# Anche in questo caso non viene creato nessun volume.
+# docker volume ls -> vuoto
