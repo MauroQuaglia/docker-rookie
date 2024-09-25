@@ -14,3 +14,5 @@ fi
 # tutti i volumi non utilizzati (--volume)
 # tutte le cache delle build
 docker system prune --all --volumes --force
+
+# bisognerebbe però cancellare anche i volumi creati a mano.

@@ -1,10 +1,1 @@
-leggere:
-docker --help
-docker container --help
-docker container run --help
-...
-
-Terminator:
-docker-monitor
-* sudo dmesg
-* docker system events
+# bisognerebbe però cancellare anche i volumi creati a mano.
