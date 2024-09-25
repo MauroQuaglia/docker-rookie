@@ -1,7 +1,7 @@
 #! /bin/bash
 
 running=$(docker container ls --quiet)
-if [ -n "$running" ]; then
+if [ -n "${running}" ]; then
     echo "Stopping running containers..."
     docker container stop ${running}
 else
@@ -11,8 +11,11 @@ fi
 # Rimuove tutti i container fermi
 # tutte le reti non utilizzate
 # tutte le immagini (non solo quelle dangling) (--all)
-# tutti i volumi non utilizzati (--volume)
+# tutti i volumi non utilizzati (--volume) ma non quelli creati a mano da me
 # tutte le cache delle build
 docker system prune --all --volumes --force
 
+
 # bisognerebbe però cancellare anche i volumi creati a mano.
+volumes=$(docker volume ls --quiet)
+docker volume rm ${volumes}
