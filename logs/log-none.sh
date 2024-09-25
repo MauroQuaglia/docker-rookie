@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Con il driver "none" non viene loggato nulla
+# Con il driver "none" non viene loggato nulla.
 
 docker container stop nginx-test
 docker container rm nginx-test
