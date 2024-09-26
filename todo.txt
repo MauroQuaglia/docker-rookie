@@ -1,1 +1,3 @@
-# bisognerebbe però cancellare anche i volumi creati a mano.
+# monitor terminator sudo dmesg, event, stats
+* docker system events
+* docker container stats ${running}

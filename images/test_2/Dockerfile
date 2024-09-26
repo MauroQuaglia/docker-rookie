@@ -37,6 +37,10 @@ VOLUME ["/mydata"]
 
 # CMD exit 1 se lo voglio fare fallire
 HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD exit 0
+# Posso anche fare una cosa del genere che è più carina:
+# Cioè copio uno script di healthcheck nella bin e poi lo eseguo
+# COPY docker-healthcheck /usr/local/bin
+# HEALTHCHECK CMD ["docker-healthcheck"]
 
 
 # Se voglio fare override: docker container run --rm -it --entrypoint bin/bash mq7:latest
