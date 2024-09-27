@@ -38,6 +38,12 @@
       - "docker-compose-plugin"
       - "docker-ce-rootless-extras"
 
+- name: "Install Utilities"
+  apt:
+    update_cache: true
+    name:
+      - "curl"
+
 - name: "Copy docker daemon configuration"
   copy:
     src: "daemon.json"
