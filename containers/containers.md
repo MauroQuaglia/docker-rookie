@@ -112,3 +112,20 @@ Con il Rootless mode anche quest'ultimo processo viene lanciato senza i privileg
   * PID=1 è colui che in Linux si occupa anche degli zoombie.
 * `diff`: utile per vedere se il processo  principale effettua degli Added/Changed di file o directory rispetto al filesystem originale.
 * `--pid=host`: il container condivide il namespace dei PID dell'host così che vedo lo stesso PID da dentro e da fuori il container.
+
+# I punti di vista dal DockerHost e dal Container.
+* Sia per il PID sia per lo USER le cose vanno come detto.
+* I PID cambiano e anche lo USER se l'id è presente sul DH e sul C, il mapping potrebbe creare confusione.
+`DH > docker container run --detach --publish 8080:80 --user 1000 ubuntu:latest /bin/bash -c "sleep infinity"`
+* Utente: ubuntu, PID: 1
+```
+  C:/$ ps -aux
+  USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+  ubuntu         1  0.0  0.0   2696  1116 ?        Ss   07:02   0:00 sleep infinity
+```
+* Utente: xpuser, PID: 32198
+```
+  DH > docker container top a1
+  UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+  xpuser              32198               32179               0                   09:02               ?                   00:00:00            sleep infinity
+```
