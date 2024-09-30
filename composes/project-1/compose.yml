@@ -1,0 +1,10 @@
+---
+services:
+  postgresql:
+    build:
+      context: "./postgresql"
+    ports:
+      - "7000:7777"
+    environment:
+      POSTGRES_PASSWORD: superuser_password
+...
