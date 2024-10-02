@@ -1,14 +1,14 @@
 ---
 services:
-  app:
+  rails:
     build:
       context: "."
       dockerfile: Dockerfile
-    command: "rails new . --minimal"
     volumes:
       - "..:/app"
       - "bundler_gems:/usr/local/bundle/"
     user: "1000:1000"
+    command: "rails new ."
 volumes:
   bundler_gems:
 ...
