@@ -8,3 +8,5 @@ gem install rails -v=7.2.1
 ```
 * Se si vuole creare una configurazione di __Rails__ particolare basta cambiare il `command` di `setup/compose.yml`, altrimenti di default fa tutto: `rails new .`
 * Lanciare lo script `setup/run.sh`.
+* A setup avvenuto posso cancellare la directory `setup`.
+* Eventualmente controllare la directory `.git`.
