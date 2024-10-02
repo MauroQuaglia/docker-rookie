@@ -1,12 +1,26 @@
 ---
+name: mauro
+
 services:
-  postgresql:
+  app:
     build:
-      context: "./postgresql"
-    ports:
-      - "7000:7777"
-    environment:
-      POSTGRES_USER: "mauro"
-      POSTGRES_PASSWORD: "mq777!"
-      POSTGRES_DB: "postgres"
+      context: "./app2"
+    volumes:
+      - "./app2:/app"
+      - "bundler_gems:/usr/local/bundle/"
+    command: ["bash", "-c", "sleep infinity"]
+    networks:
+      - "quaglia"
+  db:
+    build:
+      context: "./db"
+    networks:
+      - "quaglia"
+
+networks:
+  quaglia:
+    driver: "bridge"
+
+volumes:
+  bundler_gems:
 ...

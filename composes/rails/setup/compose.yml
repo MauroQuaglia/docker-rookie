@@ -1,0 +1,17 @@
+---
+services:
+  app:
+    build:
+      context: "."
+      dockerfile: Dockerfile
+      args:
+        RUBY_VERSION: "3.3.3"
+        BUNDLER_VERSION: "2.5.20"
+        RAILS_VERSION: "7.2.1"
+    volumes:
+      - "..:/app"
+      - "bundler_gems:/usr/local/bundle/"
+    user: "1000:1000"
+volumes:
+  bundler_gems:
+...

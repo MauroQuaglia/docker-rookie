@@ -9,6 +9,7 @@
 * Il tool Docker compose (command line docker-compose) è un tool esterno imbullonato sul Docker Engine e deve essere installato esplicitamente sul Docker host.
 
 ## keywords
+* https://docs.docker.com/reference/compose-file/
 * Le keyword base del docker-compose.yml sono: version, services, networks, volumes, secrets, config.
 * version:
   * versione del formato della sintassi del file.
