@@ -7,6 +7,6 @@ services:
       - "7000:7777"
     environment:
       POSTGRES_USER: "mauro"
-      POSTGRES_PASSWORD: "mq777!"
-      POSTGRES_DB: "postgres"
+      POSTGRES_PASSWORD: "prova"
+      POSTGRES_DB: "cars"
 ...
