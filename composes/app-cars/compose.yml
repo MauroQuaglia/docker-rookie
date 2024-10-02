@@ -1,0 +1,35 @@
+---
+name: cars
+
+services:
+  app:
+    build:
+      context: "./cars"
+      dockerfile: Dockerfile
+    volumes:
+      - "./cars:/app"
+      - "bundler_gems:/usr/local/bundle/"
+    ports:
+      - "3700:3000"
+    networks:
+      - "quaglia"
+  db:
+    build:
+      context: "./db"
+      dockerfile: Dockerfile
+    ports:
+      - "7000:5432"
+    environment:
+      POSTGRES_USER: "mauro"
+      POSTGRES_PASSWORD: "prova"
+      POSTGRES_DB: "cars"
+    networks:
+      - "quaglia"
+
+networks:
+  quaglia:
+    driver: "bridge"
+
+volumes:
+  bundler_gems:
+...
