@@ -25,11 +25,9 @@ services:
       POSTGRES_DB: "cars"
     networks:
       - "quaglia"
-
 networks:
   quaglia:
     driver: "bridge"
-
 volumes:
   bundler_gems:
 ...
