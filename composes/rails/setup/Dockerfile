@@ -1,4 +1,4 @@
-FROM ruby:${RUBY_VERSION}
+FROM ruby:3.3.3
 
 RUN <<EOF
 apt update
@@ -7,6 +7,8 @@ apt autoremove --purge -y
 apt clean
 EOF
 
-RUN gem update --system
-RUN gem install bundler -v=${BUNDLER_VERSION} --no-document
-RUN gem install rails -v=${RAILS_VERSION}
+RUN <<EOF
+gem update --system
+gem install bundler --no-document
+gem install rails
+EOF

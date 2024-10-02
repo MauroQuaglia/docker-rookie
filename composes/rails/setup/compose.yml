@@ -4,10 +4,6 @@ services:
     build:
       context: "."
       dockerfile: Dockerfile
-      args:
-        RUBY_VERSION: "3.3.3"
-        BUNDLER_VERSION: "2.5.20"
-        RAILS_VERSION: "7.2.1"
     command: "rails new . --minimal"
     volumes:
       - "..:/app"
