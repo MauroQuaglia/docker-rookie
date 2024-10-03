@@ -11,6 +11,8 @@ services:
       - "bundler_gems:/usr/local/bundle/"
     ports:
       - "3700:3000"
+    environment:
+      RAILS_MAX_THREADS: 5
     networks:
       - "quaglia"
   db:
