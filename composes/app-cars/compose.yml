@@ -1,8 +1,8 @@
 ---
-name: cars
+name: supercars
 
 services:
-  app:
+  cars:
     build:
       context: "./cars"
       dockerfile: Dockerfile
