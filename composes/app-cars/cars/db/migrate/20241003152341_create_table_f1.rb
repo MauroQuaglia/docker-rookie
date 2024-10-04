@@ -3,7 +3,7 @@ class CreateTableF1 < ActiveRecord::Migration[7.2]
     create_table :table_f1s do |t|
       t.string :name
       t.string :description
-      t.value :integer
+      t.integer :maximum_speed
       t.timestamps
     end
   end

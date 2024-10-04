@@ -2,3 +2,4 @@
 /pdf/*
 /ansible/.vagrant
 *.key
+*.log

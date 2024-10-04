@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 #ENV BUNDLE_PATH="/usr/local/bundle"
-RUN bundle install
+RUN bundle install --jobs="$(nproc)"
 
 USER 1000:1000
 

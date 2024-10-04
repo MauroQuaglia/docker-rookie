@@ -1,8 +1,10 @@
-default: &default
+development:
   adapter: postgresql
+  username: mauro
+  password: prova
+  database: cars
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") %>
-
-development:
-  <<: *default
-  database: cars
+  template: template0
+  host: supercars-db-1
+  port: 5432
