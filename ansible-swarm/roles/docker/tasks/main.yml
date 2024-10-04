@@ -1,0 +1,75 @@
+---
+# https://docs.docker.com/engine/install/debian/
+
+- name: "Uninstall old version packages"
+  apt:
+    state: absent
+    name:
+      - "docker.io"
+      - "docker-compose"
+      - "docker-doc"
+      - "podman-docker"
+      - "containerd"
+      - "runc"
+
+- name: "Install Docker requirements packages"
+  apt:
+    update_cache: true
+    name:
+      - "gnupg2"
+
+- name: "Install Docker apt key"
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+
+- name: "Add Docker apt repository"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable"
+    filename: 'docker'
+
+- name: "Install Docker"
+  apt:
+    update_cache: true
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+      - "docker-buildx-plugin"
+      - "docker-compose-plugin"
+      - "docker-ce-rootless-extras"
+
+- name: "Install Utilities"
+  apt:
+    update_cache: true
+    name:
+      - "curl"
+
+- name: "Copy docker daemon configuration"
+  copy:
+    src: "daemon.json"
+    dest: "/etc/docker/daemon.json"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+
+- name: "Add vagrant user to docker group io order to use '/var/run/docker.sock'"
+  user:
+    name: "vagrant"
+    group: "docker"
+
+- name: "Create '/home/vagrant/.docker' directory for vagrant user"
+  file:
+    path: "/home/vagrant/.docker"
+    state: "directory"
+    owner: "vagrant"
+    group: "docker"
+    mode: "0700"
+
+- name: "Add credential for vagrant user to login automatically on DockerHub"
+  copy:
+    src: "config.json.vault"
+    dest: "/home/vagrant/.docker/config.json"
+    owner: "vagrant"
+    group: "docker"
+    mode: "0600"
+...

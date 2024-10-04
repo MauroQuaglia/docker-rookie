@@ -1,0 +1,9 @@
+---
+- name: "Setup Swarm"
+  hosts: all
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: "docker"
+...
