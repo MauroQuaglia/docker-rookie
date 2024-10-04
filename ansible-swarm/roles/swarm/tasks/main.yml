@@ -1,0 +1,44 @@
+#- name: Install docker_swarm module requirement
+#  apt:
+#    name: "{{ packages }}"
+#    update_cache: yes
+#  vars:
+#    packages:
+#      - python3-docker
+#      - python3-jsondiff
+#      - python3-yaml
+
+# Init
+- name: "Init Swarm on Manager"
+  docker_swarm:
+    state: present
+    advertise_addr: "192.168.56.10"
+  register: result
+  when: inventory_hostname == "vagrant-mng01"
+
+- name: Get join-token for manager nodes
+  set_fact:
+    join_token_manager: "{{ hostvars[groups['swarm_managers'][0]].result.swarm_facts.JoinTokens.Manager }}"
+#
+#- name: Get join-token for worker nodes
+#  set_fact:
+#    join_token_worker: "{{ hostvars[groups['swarm_managers'][0]].result.swarm_facts.JoinTokens.Worker }}"
+
+- name: Join other managers
+  docker_swarm:
+    state: join
+    join_token: "{{ join_token_manager }}"
+    advertise_addr: "{{ ansible_all_ipv4_addresses }}"
+    remote_addrs: "{{ hostvars[groups['swarm_managers'][0]]['ansible_default_ipv4']['address']  }}"
+  when:
+    - inventory_hostname in groups['swarm_managers']
+    - inventory_hostname != groups['swarm_managers'][0]
+
+#- name: Join workers
+#  docker_swarm:
+#    state: join
+#    join_token: "{{ join_token_worker }}"
+#    advertise_addr: "{{ ansible_host }}"
+#    remote_addrs: "{{ hostvars[groups['swarm_managers'][0]].ansible_host }}"
+#  when:
+#    - inventory_hostname not in groups['swarm_managers']
