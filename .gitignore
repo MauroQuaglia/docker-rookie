@@ -3,5 +3,5 @@
 /ansible/.vagrant
 /ansible-swarm/.vagrant
 *.key
-#*.log
-#tmp/
+*.log
+tmp/
