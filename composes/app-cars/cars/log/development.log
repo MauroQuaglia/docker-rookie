@@ -502,3 +502,34 @@ Processing by CarsController#index as HTML
 Completed 200 OK in 60ms (Views: 39.5ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 3.4ms)
 
 
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-10-04 13:00:32.027792', '2024-10-04 13:00:32.027795') RETURNING "key"[0m
+Migrating to CreateTableF1 (20241003152341)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "f1s" ("id" bigserial primary key, "name" character varying, "description" character varying, "maximum_speed" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241003152341') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mF1 Delete All (0.5ms)[0m  [1m[31mDELETE FROM "f1s"[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (1.6ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Ferrari"], ["description", "Auto sportiva storica!"], ["maximum_speed", 350], ["created_at", "2024-10-04 13:00:37.763940"], ["updated_at", "2024-10-04 13:00:37.763940"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (0.7ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "McLaren"], ["description", "Bella"], ["maximum_speed", 340], ["created_at", "2024-10-04 13:00:37.771491"], ["updated_at", "2024-10-04 13:00:37.771491"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 10.45.0.65 at 2024-10-04 13:00:43 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (29.6ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 60.9ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 75.6ms | GC: 0.9ms)
+Completed 200 OK in 142ms (Views: 39.3ms | ActiveRecord: 41.1ms (1 query, 0 cached) | GC: 8.3ms)
+
+
