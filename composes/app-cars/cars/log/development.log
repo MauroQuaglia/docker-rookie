@@ -272,3 +272,233 @@ Migrating to CreateTableF1 (20241003152341)
   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160052923520780740)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTableF1 (20241003152341)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[35mDROP TABLE "table_f1s"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20241003152341'[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to CreateTableF1 (20241003152341)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.3ms)[0m  [1m[35mCREATE TABLE "f1s" ("id" bigserial primary key, "name" character varying, "description" character varying, "maximum_speed" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241003152341') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mF1 Delete All (0.5ms)[0m  [1m[31mDELETE FROM "f1s"[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (2.1ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Ferrari"], ["description", "Auto sportiva storica!"], ["maximum_speed", 350], ["created_at", "2024-10-04 12:33:57.217223"], ["updated_at", "2024-10-04 12:33:57.217223"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (0.7ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "McLaren"], ["description", "Bella"], ["maximum_speed", 340], ["created_at", "2024-10-04 12:33:57.225432"], ["updated_at", "2024-10-04 12:33:57.225432"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:34:43 +0000
+Processing by CarsController#index as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | GC: 0.0ms)
+Completed 200 OK in 41ms (Views: 2.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.5ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:46:30 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (118.6ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 138.0ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 140.9ms | GC: 0.8ms)
+Completed 500 Internal Server Error in 161ms (ActiveRecord: 114.2ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+  
+ActionView::Template::Error (connection to server at "10.45.0.66", port 7000 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+
+Causes:
+ActiveRecord::ConnectionNotEstablished (connection to server at "10.45.0.66", port 7000 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+PG::ConnectionBad (connection to server at "10.45.0.66", port 7000 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+    1: <%= @f1s.each do |f1| %>
+    2:   Nome: <%= f1.name %>
+    3:   Descrizione: <%= f1.description %>
+    4:   Velocità Massima: <%= f1.maximum_speed %>
+  
+app/views/cars/index.erb:1
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:47:35 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (37.0ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 43.5ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 43.8ms | GC: 0.8ms)
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 44.2ms (1 query, 0 cached) | GC: 7.9ms)
+
+
+  
+ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "f1s" does not exist
+LINE 1: SELECT "f1s".* FROM "f1s"
+                            ^
+):
+
+Causes:
+ActiveRecord::StatementInvalid (PG::UndefinedTable: ERROR:  relation "f1s" does not exist
+LINE 1: SELECT "f1s".* FROM "f1s"
+                            ^
+)
+PG::UndefinedTable (ERROR:  relation "f1s" does not exist
+LINE 1: SELECT "f1s".* FROM "f1s"
+                            ^
+)
+    1: <%= @f1s.each do |f1| %>
+    2:   Nome: <%= f1.name %>
+    3:   Descrizione: <%= f1.description %>
+    4:   Velocità Massima: <%= f1.maximum_speed %>
+  
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-10-04 12:48:22.806468', '2024-10-04 12:48:22.806471') RETURNING "key"[0m
+Migrating to CreateTableF1 (20241003152341)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "f1s" ("id" bigserial primary key, "name" character varying, "description" character varying, "maximum_speed" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241003152341') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160052923520780740)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mF1 Delete All (0.5ms)[0m  [1m[31mDELETE FROM "f1s"[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (1.6ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Ferrari"], ["description", "Auto sportiva storica!"], ["maximum_speed", 350], ["created_at", "2024-10-04 12:48:29.761156"], ["updated_at", "2024-10-04 12:48:29.761156"]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mF1 Create (0.8ms)[0m  [1m[32mINSERT INTO "f1s" ("name", "description", "maximum_speed", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "McLaren"], ["description", "Bella"], ["maximum_speed", 340], ["created_at", "2024-10-04 12:48:29.770843"], ["updated_at", "2024-10-04 12:48:29.770843"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:48:38 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (2.6ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 36.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 62.1ms | GC: 0.0ms)
+Completed 200 OK in 70ms (Views: 57.4ms | ActiveRecord: 7.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:49:41 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  Rendered cars/index.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= @f1s.each do |f1| %>
+  Nome: <%= f1.name %>
+  Descrizione: <%= f1.description %>
+  Velocità Massima: <%= f1.maximum_speed %>
+<%= end %>
+):
+
+Causes:
+ActiveSupport::SyntaxErrorProxy (/app/app/views/cars/index.erb:5: syntax error, unexpected `end'
+...ze; @output_buffer.append=( end );
+...                            ^~~
+/app/app/views/cars/index.erb:7: syntax error, unexpected end-of-input, expecting `end' or dummy end
+          end
+             ^
+)
+1:    <%= @f1s.each do |f1| %>
+2:      Nome: <%= f1.name %>
+3:      Descrizione: <%= f1.description %>
+4:      Velocità Massima: <%= f1.maximum_speed %>
+5:    <%= end %>
+  
+app/views/cars/index.erb:5: syntax error, unexpected `end'
+app/views/cars/index.erb:7: syntax error, unexpected end-of-input, expecting `end' or dummy end
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:49:55 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.6ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 25.4ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.0ms | GC: 0.1ms)
+Completed 200 OK in 39ms (Views: 29.4ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:50:22 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.5ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 20.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.8ms | GC: 0.1ms)
+Completed 200 OK in 39ms (Views: 22.5ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:50:43 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.3ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 15.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 17.9ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:50:44 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.5ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 14.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:50:44 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.4ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 4.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:50:44 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (0.2ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 10.45.0.65 at 2024-10-04 12:51:47 +0000
+Processing by CarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cars/index.erb within layouts/application
+  [1m[36mF1 Load (1.9ms)[0m  [1m[34mSELECT "f1s".* FROM "f1s"[0m
+  Rendered cars/index.erb within layouts/application (Duration: 27.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 41.7ms | GC: 3.4ms)
+Completed 200 OK in 60ms (Views: 39.5ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 3.4ms)
+
+

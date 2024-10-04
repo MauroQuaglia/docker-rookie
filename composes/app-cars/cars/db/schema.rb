@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_152341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "table_f1s", force: :cascade do |t|
+  create_table "f1s", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "maximum_speed"

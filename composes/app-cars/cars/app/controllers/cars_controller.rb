@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
 
   def index
-    render plain: "CARS!"
+    @f1s = F1.all
   end
 
 end
