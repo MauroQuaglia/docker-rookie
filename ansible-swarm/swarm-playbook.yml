@@ -1,4 +1,6 @@
 ---
+# ansible-playbook swarm-playbook.yml --ask-vault-pass -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"'
+
 - name: "Setup Swarm"
   hosts: all
   gather_facts: true

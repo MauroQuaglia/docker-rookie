@@ -1,0 +1,32 @@
+per disabilitare ssh devo modificare la conf di ansible ma mi sa che poi non gli devo passare la chiave privata!
+altrimenti il check lo fa lo stesso!
+
+
+#- name: "var fact"
+#  debug:
+#    var: hostvars['vagrant-mng01']['ansible_eth0']['ipv4']['address']
+    #var: hostvars["vagrant-mng01"]
+
+
+ #- name: "Debug"
+ #  debug:
+ #    var=result.swarm_facts.JoinTokens.Worker
+
+
+
+
+ - name: "Debug"
+   debug:
+     var=hostvars[groups['managers'][0]].result.swarm_facts.JoinTokens.Worker
+
+ - name: "Debug2"
+   debug:
+     var=ansible_all_ipv4_addresses
+   when:
+     - inventory_hostname == "vagrant-wrk01"
+
+ - name: "Debug3"
+   debug:
+     var=hostvars['vagrant-mng01']['ansible_ip']
+   when:
+     - inventory_hostname == "vagrant-wrk01"
