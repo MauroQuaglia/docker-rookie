@@ -15,14 +15,16 @@
   register: result
   when: inventory_hostname == "vagrant-mng01"
 
-- name: "Get join token for Workers"
-  set_fact:
-    join_token_worker: "{{ hostvars['vagrant-mng01'].result.swarm_facts.JoinTokens.Worker }}"
+# Alternativa: registrare questa fact (join_token_worker) e poi utilizzarla nei Workers.
+#- name: "Get join token for Workers"
+#  set_fact:
+#    join_token_worker: "{{ hostvars['vagrant-mng01'].result.swarm_facts.JoinTokens.Worker }}"
 
 - name: "Join workers"
   docker_swarm:
     state: join
-    join_token: "{{ join_token_worker }}"
+#    join_token: "{{ join_token_worker }}"
+    join_token: "{{ hostvars['vagrant-mng01'].result.swarm_facts.JoinTokens.Worker }}"
     advertise_addr: "{{ hostvars[inventory_hostname]['ansible_ip'] }}"
     remote_addrs: "{{ hostvars['vagrant-mng01']['ansible_ip'] }}"
   when:
