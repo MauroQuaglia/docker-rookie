@@ -1,12 +1,11 @@
 ---
-# ansible-playbook swarm-playbook.yml --ask-vault-pass -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"'
-
 - name: "Setup Swarm"
   hosts: all
   gather_facts: true
   become: true
 
   roles:
-    - role: "docker"
-    - role: "swarm"
+    - { role: "swarm-docker", tags: "swarm-docker" }
+    - { role: "swarm", tags: "swarm" }
+    - { role: "swarm-portainer", tags: "swarm-portainer" }
 ...

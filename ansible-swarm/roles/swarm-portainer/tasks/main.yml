@@ -1,0 +1,28 @@
+---
+# https://docs.portainer.io/start/install-ce/server/swarm/linux
+
+- name: "Install requirements"
+  apt:
+    update_cache: true
+    name:
+      - python3-jsondiff
+      - python3-yaml
+
+- name: "Copy portainer stack file"
+  copy:
+    src: "portainer-agent-stack.yml"
+    dest: "/tmp/portainer-agent-stack.yml"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+
+- name: "Deploy portainer"
+  docker_stack:
+    state: "present"
+    name: "portainer"
+    compose:
+      - "/tmp/portainer-agent-stack.yml"
+  when:
+    - inventory_hostname == "vagrant-mng01"
+...
+
