@@ -17,5 +17,15 @@
       - "9000:9000"
     detach: true
     restart: true
-...
 
+# Per impostare la password di admin di default
+# https://docs.portainer.io/api/examples
+#http POST <portainer url>/api/users/admin/init Username="<admin username>" Password="<adminpassword>"
+#- name: "Set admin password"
+#  uri:
+#    url: "http://localhost:49152/api/users/init"
+#    method: POST
+#    return_content: true
+#    body_format: json
+#    status_code: 200
+...

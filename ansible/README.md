@@ -43,5 +43,6 @@ CGroup: /system.slice/docker.service
 
 * Esempio 2:
     * Guardo da portainer preventivamente cosa c'è.
+    * Posso creare un context per il deploy: `docker context create vagrant --docker host=tcp://127.0.0.1:12375`
     * Faccio `docker context use vagrant`
     * Faccio `docker container run -d nginx:latest bash -c "sleep infinity"` e vedo che su portainer si aggiunge un nuovo container!
