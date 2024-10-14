@@ -41,19 +41,13 @@
     "unix:///var/run/docker.sock"
     ]
 ```
-* Verificare il mapping delle porte: `vagrant port vagrant-mng01`
-* Loggarsi sul manager con `vagrant ssh vagrant-mng01` e fare `ss -tulpn`
-* Da locale `telnet localhost 12375`
 * Basta configurare il Manager in questo modo, perché la cosa giusta è deployare lo stack verso il manager.
 * Il Manager dovrebbe essere messo in `drain` perché lui dovrebbe occuparsi solo della gestione dello Swarm e i worker di fare il lavoro.
+* Lo posso anche mettere a mano da Portainer.
 
-  
-## Stack wip
-* Posso provare a clonare questo: git clone https://github.com/spkane/rocketchat-hubot-demo.git --config core.autocrls=input
-* TODO mappare la porta in locale:
-* e poi fare docker -H 192.168.56.10 stack deploy --compose-file /home/xpuser/mauro-quaglia/docker-rookie/stacks/rocketchat-hubot-demo/stack/docker-compose-stack.yaml rocketchat
-* poi dal manager fare docker stack ls
-
-# TMP
-Se stai cercando di deployare uno stack Docker da remoto, devi configurare Docker per ascoltare su 2375 (non sicura) o 2376 (sicura con TLS).
-La porta 2377 è invece utilizzata internamente da Docker Swarm per la comunicazione tra i nodi del cluster.
+## Stack prova
+* Posso provare a clonare questo: `git clone https://github.com/spkane/rocketchat-hubot-demo.git --config core.autocrls=input`
+* `docker context use vagrant`
+* Dalla directory `stacks/rocketchat-hubot-demo/stack`
+* Fare `docker stack deploy --compose-file docker-compose-stack.yaml rocketchat`
+* Da Portainer dello Swar dovrei vedere cose.
