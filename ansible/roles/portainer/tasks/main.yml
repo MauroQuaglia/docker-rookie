@@ -36,8 +36,8 @@
     return_content: true
     body_format: json
     body:
-      Username: "admin"
-      Password: "admin1234567890!!!"
+      Username: "{{ portainer_username }}"
+      Password: "{{ portainer_password }}"
     status_code:
       - 200 # OK - impostata
       - 409 # Conflict - C'era già

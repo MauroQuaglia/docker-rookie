@@ -6,6 +6,6 @@
 
   roles:
     - { role: "swarm-docker", tags: "swarm-docker" }
-    - { role: "swarm", tags: "swarm" }
+    - { role: "swarm-init", tags: "swarm-init" }
     - { role: "swarm-portainer", tags: "swarm-portainer" }
 ...
