@@ -44,13 +44,56 @@
     name:
       - "curl"
 
-- name: "Copy docker daemon configuration"
+- name: "Copy docker daemon configuration for Manager"
   copy:
-    src: "daemon.json"
+    src: "daemon-manager.json"
     dest: "/etc/docker/daemon.json"
     owner: "root"
     group: "root"
     mode: "0600"
+  when:
+    inventory_hostname == "vagrant-mng01"
+  
+- name: "Create docker service directory"
+  become: true
+  file:
+    path: "/etc/systemd/system/docker.service.d"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  when:
+    inventory_hostname == "vagrant-mng01"
+
+- name: "Copy docker service configuration"
+  become: true
+  copy:
+    src: "docker.conf"
+    dest: "/etc/systemd/system/docker.service.d/docker.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when:
+    inventory_hostname == "vagrant-mng01"
+
+- name: "Restart docker"
+  become: true
+  service:
+    daemon_reload: true
+    state: "restarted"
+    name: "docker"
+  when:
+    inventory_hostname == "vagrant-mng01"
+
+- name: "Copy docker daemon configuration for Workers"
+  copy:
+    src: "daemon-worker.json"
+    dest: "/etc/docker/daemon.json"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+  when:
+    inventory_hostname in ["vagrant-wrk01", "vagrant-wrk02"]
 
 - name: "Add vagrant user to docker group io order to use '/var/run/docker.sock'"
   user:
