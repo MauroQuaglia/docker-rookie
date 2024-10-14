@@ -18,14 +18,27 @@
     detach: true
     restart: true
 
+# La porta è 9000 perché questo task viene eseguito dalla macchina Vagrant.
+- name: "Wait for Portainer up"
+  wait_for:
+    port: "9000"
+    host: "127.0.0.1"
+    state: "started"
+    timeout: 60
+
 # Per impostare la password di admin di default
+# Idem come sopra.
 # https://docs.portainer.io/api/examples
-#http POST <portainer url>/api/users/admin/init Username="<admin username>" Password="<adminpassword>"
-#- name: "Set admin password"
-#  uri:
-#    url: "http://localhost:49152/api/users/init"
-#    method: POST
-#    return_content: true
-#    body_format: json
-#    status_code: 200
+- name: Configure admin user password
+  uri:
+    url: "http://127.0.0.1:9000/api/users/admin/init"
+    method: POST
+    return_content: true
+    body_format: json
+    body:
+      Username: "admin"
+      Password: "admin1234567890!!!"
+    status_code:
+      - 200 # OK - impostata
+      - 409 # Conflict - C'era già
 ...

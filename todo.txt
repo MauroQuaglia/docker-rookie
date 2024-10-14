@@ -2,3 +2,4 @@
 
 * Mettere la password su portainer con il container diff.
 * Sullo swarm il deploy solo sul manager con porta 2375
+* Capire come lanciare ansible senza la menata dell'ssh

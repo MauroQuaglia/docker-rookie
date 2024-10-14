@@ -1,7 +1,7 @@
 Per la connessione con il demone remoto devo modificare anche il file del servizio oltre alla configurazione del demone.
 Se non faccio nulla si ottiene:
 ```
-PRIMA DEL SERVIZIO
+SERVIZIO PRIMA DELLA MODIFICA
 root@pg-vagrant:~# sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
 Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -17,7 +17,7 @@ CGroup: /system.slice/docker.service
 ```
 Ma se deployo con ansible anche il file del servizio abbiamo
 ```
-DOPO IL SERVIZIO
+SERVIZIO DOP LA MODIFICA
 root@pg-vagrant:~# sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
 Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
@@ -34,8 +34,6 @@ CGroup: /system.slice/docker.service
 └─8862 /usr/bin/dockerd
 ```
 
-* Se faccio poi `docker context list` vedo che posso deployare anche sulla macchina remota.
-  
 * Esempio 1:
   * Guardo da portainer preventivamente cosa c'è.
   * Faccio `docker context use default`
@@ -46,3 +44,7 @@ CGroup: /system.slice/docker.service
     * Posso creare un context per il deploy: `docker context create vagrant --docker host=tcp://127.0.0.1:12375`
     * Faccio `docker context use vagrant`
     * Faccio `docker container run -d nginx:latest bash -c "sleep infinity"` e vedo che su portainer si aggiunge un nuovo container!
+
+* Esempio 3:
+  * Quando sono nel context di vagrant viene tutto inviato a quel demone remoto.
+  * Per cui, anche su vado su un altro progetto e faccio `docker compose up --build` il tutto viene inviato a quel demone remoto e da portainer della macchina vedo il servizio creato con il docker compose.
