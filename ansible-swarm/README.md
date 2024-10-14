@@ -1,8 +1,12 @@
 # Swarm
 
+# Premessa
+* Il playbook è migliorabile perché ora è tutto dentro a un ruolo, per esempio per portainer o lo l'init dello Swarm.
+* Si potrebbe fare un playbook con diversi Play che girano sul Manager e sui Worker, però fa niente, va bene anche così.
+
 ## Configurazione
 * Basta lanciare un ansible: 
-  * `ansible-playbook swarm-playbook.yml --ask-vault-pass -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"'`
+  * `ansible-playbook playbook.yml --ask-vault-pass -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"'`
 
 ## Manager
 * Mi collego al Manager in SSH: `vagrant ssh vagrant-mng01`
@@ -24,9 +28,9 @@
   * Ma anche da browser si vede! http://192.168.56.10/
 
 ## Portainer 
-* Se creo lo swarm ma non mi collego, dopo 5 minuti Portainer si lamenta e richiede un restart.
+* Se creo lo Swarm ma non mi collego, dopo 5 minuti Portainer si lamenta e richiede un restart.
   * [your-portainer-instance-has-timed-out-for-security-purposes](https://portal.portainer.io/knowledge/your-portainer-instance-has-timed-out-for-security-purposes)
-* Nel caso bsata andare sul manager e riavviare i container di portainer:
+* Nel caso basta andare sul manager e riavviare i container di portainer:
   * Esempio: `docker container restart 574b80cdfb9b b29a1a5d16ca`
 
 ## Deploy
@@ -40,6 +44,8 @@
 * Verificare il mapping delle porte: `vagrant port vagrant-mng01`
 * Loggarsi sul manager con `vagrant ssh vagrant-mng01` e fare `ss -tulpn`
 * Da locale `telnet localhost 12375`
+* Basta configurare il Manager in questo modo, perché la cosa giusta è deployare lo stack verso il manager.
+* Il Manager dovrebbe essere messo in `drain` perché lui dovrebbe occuparsi solo della gestione dello Swarm e i worker di fare il lavoro.
 
   
 ## Stack wip

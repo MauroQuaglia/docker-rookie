@@ -24,5 +24,33 @@
       - "/tmp/portainer-agent-stack.yml"
   when:
     - inventory_hostname == "vagrant-mng01"
+
+# La porta è 9000 perché questo task viene eseguito dalla macchina Vagrant.
+- name: "Wait for Portainer up"
+  wait_for:
+    port: "9000"
+    host: "127.0.0.1"
+    state: "started"
+    timeout: 60
+  when:
+    - inventory_hostname == "vagrant-mng01"
+
+# Per impostare la password di admin di default
+# Idem come sopra.
+# https://docs.portainer.io/api/examples
+- name: Configure admin user password
+  uri:
+    url: "http://127.0.0.1:9000/api/users/admin/init"
+    method: POST
+    return_content: true
+    body_format: json
+    body:
+      Username: "{{ portainer_username }}"
+      Password: "{{ portainer_password }}"
+    status_code:
+      - 200 # OK - impostata
+      - 409 # Conflict - C'era già
+  when:
+    - inventory_hostname == "vagrant-mng01"
 ...
 

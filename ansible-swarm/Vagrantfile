@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define('vagrant-mng01') do |current|
+    #Portainer: http://localhost:19000/#!/home
     current.vm.network('forwarded_port', id: 'ssh', guest: 22, host: 2310, auto_correct: false)
     current.vm.network('forwarded_port', id: 'portainer', guest: 9000, host: 19000, protocol: "tcp", auto_correct: false)
     current.vm.network('forwarded_port', id: 'stack-deploy', guest: 2375, host: 12375, protocol: "tcp", auto_correct: false)
