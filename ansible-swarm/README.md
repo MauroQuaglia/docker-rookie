@@ -51,5 +51,5 @@
 * Posso provare a clonare questo: `git clone https://github.com/spkane/rocketchat-hubot-demo.git --config core.autocrls=input`
 * `docker context use vagrant`
 * Dalla directory `stacks/rocketchat-hubot-demo/stack`
-* Fare `docker stack deploy --compose-file docker-compose-stack.yaml rocketchat`
+* Fare `docker stack deploy --compose-file docker compose-stack.yaml rocketchat`
 * Da Portainer dello Swarm dovrei vedere cose.

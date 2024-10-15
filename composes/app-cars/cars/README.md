@@ -8,5 +8,8 @@
   * Creo il database e faccio la migrazione  da dentro il container:
     * `rails db:migrate`
     * `rails db:seed`
+* Come alternativa:
+  * `docker compose exec cars rails db:migrate` 
+  * `docker compose exec cars rails db:seed` 
 * Poi da browser per vedere il risultato:
   * http://0.0.0.0:3700/

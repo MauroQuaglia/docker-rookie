@@ -1,7 +1,0 @@
-.dockerignore
-docker-compose.yml
-Dockerfile
-text-2.txt
-log
-setup.sh
-temp.txt

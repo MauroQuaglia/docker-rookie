@@ -1,18 +1,16 @@
 # https://docs.docker.com/compose/compose-file/
-# https://github.com/compose-spec/compose-spec/blob/master/00-overview.md
 # E' evidente che ci sono delle cache in giro quindi sempre meglio usare l'opzione --no-cache altrimenti ho notato che a volte non vede delle modifiche
 # Tipo tolgo un file da una directory in un volume e lui continua a vederlo
-# docker-compose up --build --no-cache -d
+# docker compose up --build --no-cache -d
 
 # IL buon pattern:
-# docker-compose config
-# docker-compose build --no-cache
-# docker-compose up -d
+# docker compose config
+# docker compose build --no-cache
+# docker compose up -d
 # docker container exec -it qoturnix-7 /bin/bash
 # docker compose down --remove-orphans
-# https://docs.docker.com/compose/compose-file/compose-file-v3/
 # docker container exec -it q-alpine-7 /bin/bash
-version: '3.6' # docker-compose config
+
 services:
   q-alpine:
     build:
@@ -20,7 +18,7 @@ services:
     container_name: q-alpine-7
     image: 'q-alpine-image-name'
     stdin_open: true
-    # Oltre ad avere la variabile disponibile per il docker-compose ($A) cosa che avviene di default, con env_file questa viene impostata anche come variabile di ambiente del container.
+    # Oltre ad avere la variabile disponibile per il docker compose ($A) cosa che avviene di default, con env_file questa viene impostata anche come variabile di ambiente del container.
     env_file:
       - .env
     secrets:
@@ -68,7 +66,7 @@ services:
       - ./log:/data-staging-3/
       # "volume" gestito in automatico da Docker.
       # Qui c'è condivisione sullo Swarm.
-      # Importante, il volume deve poi essere definito tra le entry principali del docker-compose (qoturnix-gemset:).
+      # Importante, il volume deve poi essere definito tra le entry principali del docker compose (qoturnix-gemset:).
       - qoturnix-gemset:/data-staging-4/
     depends_on:
       - postgres
