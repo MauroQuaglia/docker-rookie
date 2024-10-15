@@ -7,7 +7,7 @@
 # cpus=[0.01...num-tot-di-cpu]
 # C'è da dire che se la macchina non è particolarmente carica e c'è disponiblità l'impostazione non viene considerata.
 # Avrà effetto quando il sistema sarà sotto stress e in questo modo sappiamo che a questo container più di 2 CPU non gli diamo.
-# Queste impostazioninon sono degli hard-limits, hanno effetto solo quando c'è competizione tra i container per l'utilizzo delle CPU.
+# Queste impostazioni non sono degli hard-limits, hanno effetto solo quando c'è competizione tra i container per l'utilizzo delle CPU.
 
 docker container run \
     --rm -it \

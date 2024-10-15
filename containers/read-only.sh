@@ -2,7 +2,7 @@
 
 # Creo un container read-only nel senso che nessuno ci può scrivere dentro.
 # Per evitare che inavvertitamente qualcuno ci scriva qualcosa.
-# In questo esempio, nel volume posso continuare a scrivere perché non hospecificato che è read-only, ma nel container no.
+# In questo esempio, nel volume posso continuare a scrivere perché non ho specificato che è read-only, ma nel container no.
 
 docker container run \
     --volume ./stuff:/basket:rw \
