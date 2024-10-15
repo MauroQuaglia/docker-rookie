@@ -1,8 +1,14 @@
-Per la connessione con il demone remoto devo modificare anche il file del servizio oltre alla configurazione del demone.
-Se non faccio nulla si ottiene:
+# Docker Standalone
+* Crea una macchina con installato Docker, Portainer e un Terminato per il debug.
+* Per vedere Portainer da locale: `http://localhost:49152/#!/home`
+* Configura anche un demone remoto che io posso contattare dalla mia macchina locale dalla porta `12375`.
+
+# Come ho configurato il demone remoto
+* Per la connessione con il demone remoto devo modificare anche il file del servizio oltre alla configurazione del demone.
+* Se non faccio nulla si ottiene:
 ```
 SERVIZIO PRIMA DELLA MODIFICA
-root@pg-vagrant:~# sudo systemctl status docker
+root@vagrant-dck:~# sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
 Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
 Active: active (running) since Fri 2024-10-11 13:16:35 UTC; 55s ago
@@ -15,10 +21,10 @@ CPU: 328ms
 CGroup: /system.slice/docker.service
 └─4001 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
-Ma se deployo con ansible anche il file del servizio abbiamo
+* Ma se deployo con ansible anche il file del servizio abbiamo:
 ```
 SERVIZIO DOP LA MODIFICA
-root@pg-vagrant:~# sudo systemctl status docker
+root@vagrant-dck:~# sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
 Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
 Drop-In: /etc/systemd/system/docker.service.d
