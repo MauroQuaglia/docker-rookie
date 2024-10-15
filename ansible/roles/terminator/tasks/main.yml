@@ -22,4 +22,5 @@
     mode: 0600
   loop:
     - docker_vinc
+    - docker_monitor
 ...
