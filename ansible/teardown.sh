@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ports=(2222 49152 12375)
+ports=(2222)
 
 echo "--- Destroy Vagrant machines ---"
 vagrant destroy -f
