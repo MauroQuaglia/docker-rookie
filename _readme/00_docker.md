@@ -30,11 +30,9 @@
 # L'architettura `docker` è composta di vari livelli:
 * __Runtime__: start e stop dei container
   * __containerd__
-    * Il runtime dei container. Gestisce il ciclo di vita dei container.
-    * `docker-containerd` è un solo processo
+    * Gestisce il ciclo di vita dei container.
   * __runc__
     * Il livello più basso che parla con il SO e aderisce agli standard OCI - Open Container Initiative
-    * `docker-runc` un processo per ogni container
 * __Engine o demone__
   * Parla con i container, gestisce le reti, i volumi, le immagini, ...
   * `dockerd` un solo processo
@@ -76,4 +74,4 @@
 * `systemctl restart docker`
   * Far ripartire il demone.
 * Per fare partire il demone docker al boot dell'host:
-* `systemctl enable docker`
+  * `systemctl enable docker`

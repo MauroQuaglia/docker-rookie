@@ -105,7 +105,7 @@ Questo file è importante per dire a Docker cosa escludere durante la build dell
 Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti i file nell'immagine. In realtà mando al Server tutti i file tranne quelli del `.dockerignore` perché poi è il Server che fa la build dell'immagine.
 
 ## BuildKit
-* BuildKit è il nuovo motore per costruire immagini. Per abilitarlo basta mettere come variabile di ambiente `DOCKER_BUILDKIT=1`.
+* BuildKit è il nuovo motore di default per costruire immagini.
 
 # Comandi
 * `docker images` oppure `docker image ls`:
@@ -135,8 +135,7 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
 # Per costruire immagine - cose da fare
 * I comandi `apt-get update` e `apt-get upgrade` non rendono le immagini fisse.
 * Per una immagine di base meglio usare uno sha256 così non ci sono dubbi.
-* Esempio di comando `DOCKER_BUILKIT=1 docker image build -t x:y . --no-cache`:
-  * `DOCKER_BUILKIT=1`: per utilizzare BuildKit (default è `0` quindi disabilitato)
+* Esempio di comando `docker image build -t x:y . --no-cache`:
   * `-t: repository:immagine`
   * `.`: 
     * E' il contesto di build, quello che c'è in questa directory viene mandato al server dockerd per costruire l'immagine. 
