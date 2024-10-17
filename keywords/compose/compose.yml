@@ -1,0 +1,11 @@
+---
+services:
+  web:
+    image: "nginx:latest"
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "8080:80"
+    # command: Serve per fare override del default
+
+...
