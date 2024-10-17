@@ -1,2 +1,3 @@
 # Provare a sistemare Prometheus.
 * Provare ad usare i secrets
+* Sistemare le cose sotto miscellanea
