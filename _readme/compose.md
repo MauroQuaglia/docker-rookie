@@ -45,5 +45,4 @@
 * `docker compose exec [name] [cmd]`: anche in questo caso posso collegarmi a un singolo container (non serve passare il -it) perché il docker compose è un tool a parte che fa cose diverse del comando "docker".
 * `docker compose logs [name]`: i log di un service
 * `docker compose start|stop|pause|unpause [name]|[tutto]`: di un singolo servizio o di tutto!
-* Nel docker compose si possono usare delle variabili `$` che fanno riferimento a un file specifico `.env` e che vengono prese in automatico. 
-  * Posso sovrascriverle tramite un altro file del tipo `docker compose-defaults.yaml` e usare il comado `-f` quando faccio partire il compose.
+* Nel docker compose si possono usare delle variabili `$` che fanno riferimento a un file specifico `.env` e che vengono prese in automatico.

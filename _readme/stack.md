@@ -9,7 +9,6 @@
   stesso servizio sia replicato in più container.
     * In production il concetto si servizio e container è diverso, possiamo pensare a un servizio come a un container
       rafforzato.
-    *
 * Ci sono due modalità per replicare un servizio:
     * "Replicated": che deploya il numero di repliche specificato uniformemente nello Swarm
     * "Global": che deploya il servizio su tutti i nodi dello Swarm.
@@ -24,7 +23,7 @@
 * Se un servizio non specifica una rete, viene  creata una rete nome-app_default e il servizio viene asegnato a quella.
 
 # Keyword
-* version, services,networks, volumes, secrets
+* services,networks, volumes, secrets
 * Si possono specificare varibili di ambiente nel container con `environment` e specificare cose come dove voglio deployare il container `deploy -> placement -> constraint -> "node.role == worker"` ma sono solo esempi di una infinità di cose che posso fare.
 
 # secrets
@@ -33,7 +32,7 @@
   * e devono essere definite nello stack-file.
   * verrano montate nel container come file regolari con il nome che specifico in "target" e veranno salvate nel container sotto "/run/secrets". 
 * `file: <file-name>`
-  * creati al momento dell deploy. Ma non è il massimo per la sicurezza.
+  * creati al momento del deploy. Ma non è il massimo per la sicurezza.
 
 # Comandi
 * `docker service logs [nome-servizio]`

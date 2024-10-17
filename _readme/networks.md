@@ -1,5 +1,5 @@
 # Network
-Possibilità do connessione container - container oppure container - VLAN, ...
+Possibilità di connessione container - container oppure container - VLAN, ...
 Il networking di Docker è basato su una architettura chiamata Container Network Model (CNM).
 __libnetwork__ è l'implementazione di Docker del CNM.
 * Docker fornisce già di base un insieme di driver nativi chiamati "local drivers" e sono:
@@ -21,7 +21,7 @@ __libnetwork__ è l'implementazione di Docker del CNM.
   * control plane (TLS): traffico di gestione del cluster
   * di data (non TLS perché c'è molto over-head, acnhe se volendo si può attivare): traffico applicativo
 * Un nodo è in grado di vedere la overlay solo quando c'è effettivamente un container a cui serve quella rete.
-* I container sandalone che non sono parte di uno Swarm non possono connettersi a un'overlay network a meno che non abbiamo la propietà `attachable=true`.
+* I container standalone che non sono parte di uno Swarm non possono connettersi a un'overlay network a meno che non abbiamo la propietà `attachable=true`.
     
 # Comandi
 * `docker networks ls`
