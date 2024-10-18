@@ -1,11 +1,15 @@
 ---
 services:
   web:
-    image: "nginx:latest"
+    build:
+      context: .
     cap_add:
       - SYS_ADMIN
     ports:
       - "8080:80"
     # command: Serve per fare override del default
-
+    healthcheck:
+      test: ["CMD", "/health/healthcheck.sh"]
+      interval: "1s"
+      retries: 3
 ...
