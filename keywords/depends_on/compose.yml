@@ -1,0 +1,18 @@
+# Voglio capire se il depends_on dipende dallo stato dell'heatlcheck.
+
+---
+services:
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    command:
+      - "sleep infinity"
+    depends_on:
+      - "db"
+  db:
+    image: "postgres:latest"
+    healthcheck:
+      test: [ "CMD-SHELL", "exit 0" ]
+      interval: "3s"
+...
