@@ -2,7 +2,7 @@
 
 # Quando sono in uno Swarm, sulla base di un healthcheck posso prendere delle decisioni.
 # L'immagine di base non ha healthcheck: docker image inspect nginx:latest | grep "Healthcheck"
-# Qui non uso nessun Dockerfile e aggiungiamo un healthcheck dallo stack.yml
+# Qui non uso nessun Dockerfile e aggiungiamo un healthcheck direttamente dallo stack.yml
 # Valgono le considerazioni del readme.md.
 
 # Fare uno Swarm: docker swarm init
@@ -20,14 +20,15 @@ services:
     ports:
       - "8080:80"
     deploy:
-      replicas: 1
+      # Deploy
       update_config:
         failure_action: "rollback"
-      restart_policy:
-        max_attempts: 3
+      # Rollback (se fallisce anche il rollback)
+      rollback_config:
+        failure_action: "pause"
     healthcheck:
-      #test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
-      test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
+      # test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
       interval: "3s"
 
 ...

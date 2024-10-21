@@ -8,5 +8,5 @@
 * Usamdo solo `stack.yml` per produzione.
 
 * In locale non ci sono effetti se non il vedere il container nello stato unhealthy.
-* Nello Swarm invece, impostando bene la `failure_action`, si vede che se c'è su un container buono e faccio un deploy con un nuovo stack con
+* Nello Swarm invece, impostando bene la `failure_action` del processo di deploy, si vede che se c'è su un container buono e faccio un deploy con un nuovo stack con
   un container che ha un healthcheck che fallisce, ci prova a fare deploy... ma poi alla fine fa `rollback`.

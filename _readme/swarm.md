@@ -44,3 +44,13 @@ Dallo Swarm lancio `docker info | grep -i "swarm"`:
  * `docker swarm leave --force` -> distruggo
 * Per esempio faccio un init dello Swarm, e un deploy del tipo `docker stack deploy -c docker-stack.yml mq7`
   * Bello anche fare partire Portainer in locale perché si possono vedere molte cose e poi provare.
+
+
+# stack.yml 
+* Container:
+  * `restart_policy:`
+  * Controlla come e quando un container viene riavviato, ma non durante la fase di deploy o rollback perché per quello ci sono sezioni dedicate.
+  * Entra in gioco dopo che il container è stato avviato correttamente
+* Deploy:
+  * `update_config`: Definisce come vengono eseguiti gli aggiornamenti dei servizi, compreso l'aggiornamento delle repliche.
+  * `rollback_config`: Gestisce come eseguire il rollback di un servizio se l'aggiornamento fallisce.
