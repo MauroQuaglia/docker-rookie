@@ -1,0 +1,33 @@
+# https://docs.docker.com/reference/compose-file/deploy/
+
+# Quando sono in uno Swarm, sulla base di un healthcheck posso prendere delle decisioni.
+# L'immagine di base non ha healthcheck: docker image inspect nginx:latest | grep "Healthcheck"
+# Qui non uso nessun Dockerfile e aggiungiamo un healthcheck dallo stack.yml
+# Valgono le considerazioni del readme.md.
+
+# Fare uno Swarm: docker swarm init
+# docker stack deploy --compose-file stack.yml nginx
+
+# Qua si che si vedono gli effetti.
+# Faccio un deploy buono, con healtcheck che ha successo.
+# Poi ne faccio uno cattivo con healtcheck che fallisce.
+# Da portainer si vede che quando l'healthcheck fallisce, la failure_action: rollback interviene e viene rimesso un container funzionante.
+
+---
+services:
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    deploy:
+      replicas: 1
+      update_config:
+        failure_action: "rollback"
+      restart_policy:
+        max_attempts: 3
+    healthcheck:
+      #test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
+      interval: "3s"
+
+...

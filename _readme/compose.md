@@ -1,3 +1,7 @@
+# Documentazione
+[reference](https://docs.docker.com/reference/compose-file/)
+[awesome-compose](https://github.com/docker/awesome-compose)
+
 # Deploy development
 * Il `compose.yml` è per il Single Engine Mode.
 * Il file chiave è il __compose.yml__, che crea un'immagine a partire dal __Dockefile__ e deploya l'App fatta da più microservizi.

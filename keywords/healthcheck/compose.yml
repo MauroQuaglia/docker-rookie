@@ -1,0 +1,17 @@
+# https://docs.docker.com/reference/compose-file/services/#healthcheck
+
+# L'immagine di base non ha healthcheck: docker image inspect nginx:latest | grep "Healthcheck"
+# Qui non uso nessun Dockerfile e aggiungiamo un healthcheck dal compose.
+# Valgono le considerazioni del readme.md.
+
+---
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    healthcheck:
+      # test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
+      interval: "3s"
+...
