@@ -3,7 +3,6 @@
 # Quando sono in uno Swarm, sulla base di un healthcheck posso prendere delle decisioni.
 # L'immagine di base non ha healthcheck: docker image inspect nginx:latest | grep "Healthcheck"
 # Qui non uso nessun Dockerfile e aggiungiamo un healthcheck direttamente dallo stack.yml
-# Valgono le considerazioni del readme.md.
 
 # Fare uno Swarm: docker swarm init
 # docker stack deploy --compose-file stack.yml nginx
@@ -30,5 +29,4 @@ services:
       test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
       # test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
       interval: "3s"
-
 ...

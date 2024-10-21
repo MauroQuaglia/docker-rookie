@@ -2,16 +2,17 @@
 
 # L'immagine di base non ha healthcheck: docker image inspect nginx:latest | grep "Healthcheck"
 # Qui non uso nessun Dockerfile e aggiungiamo un healthcheck dal compose.
-# Valgono le considerazioni del readme.md.
+# Posso poi fare prove in locale, ma ancora il container segnala il malfunzionamento ma se nessuno fa azioni continua a funzionare.
+# Le keyword (deploy) dello stack.yml qui non hanno effetto perché sono in locale.
 
 ---
 services:
   web:
-    image: nginx:latest
+    image: "nginx:latest"
     ports:
       - "8080:80"
     healthcheck:
-      # test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
+      #test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
       test: ["CMD-SHELL", "curl --fail http://localhost:90 || exit 1"]
       interval: "3s"
 ...
