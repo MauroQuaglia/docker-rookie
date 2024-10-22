@@ -1,0 +1,23 @@
+# In realtà il depends_on si può combinare all'healthcheck, basta usarlo bene!
+# Questo funziona come mi aspetto, deve essere healthy il db prima di avviare il web!
+# La menata è che per lo stack non funziona questa cosa, segue delle regole diverse.
+---
+services:
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: "service_healthy" # Lo dirà l'healthcheck se healthy o meno!
+  db:
+    image: "postgres:latest"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U prova_user -d prova_db" ] # OK - exit 0
+      #test: [ "CMD-SHELL", "pg_isready xxx" ] # KO - exit 3
+      interval: "3s"
+    environment:
+      POSTGRES_USER: "prova_user"
+      POSTGRES_PASSWORD: "prova_password"
+      POSTGRES_DB: "prova_db"
+...

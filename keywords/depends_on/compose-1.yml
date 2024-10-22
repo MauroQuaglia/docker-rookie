@@ -1,0 +1,23 @@
+# Voglio capire se il depends_on dipende dallo stato dell'heatlcheck.
+# Questo è un compose, sappiamo che qui ci possiamo fare poco se non vedere che l'healthcheck funziona, anche se direttamente dailog di postgres non si vede ho provato a mano.
+# La vera prova è nello stack.
+
+---
+services:
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    depends_on:
+      - "db"
+  db:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_USER: "prova_user"
+      POSTGRES_PASSWORD: "prova_password"
+      POSTGRES_DB: "prova_db"
+    healthcheck:
+      #test: [ "CMD-SHELL", "pg_isready -U prova_user -d prova_db" ] # OK - exit 0
+      test: [ "CMD-SHELL", "pg_isready xxx" ] # KO - exit 3
+      interval: "3s"
+...

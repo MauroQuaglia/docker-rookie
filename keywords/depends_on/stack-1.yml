@@ -1,0 +1,28 @@
+# https://docs.docker.com/reference/compose-file/services/#depends_on
+# Voglio capire se il depends_on dipende dallo stato dell'heatlcheck.
+# Non metto politiche di deploy apposta.
+# docker stack deploy --compose-file stack-1.yml depends_on
+# docker stack rm depends_on
+# Se faccio il deploy subito rotto si vede che il web parte anche se il container del database non parte.
+# Questo dimostra che il depends_on significa solo dai segnale di avvio al db prima del web ma senza curarti di altro.
+# NB: la condition: "service_healthy" non si può mettere sullo Swarm, deve essere fatta a mano tramite uno script custom!
+
+---
+services:
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    depends_on:
+      - "db"
+  db:
+    image: "postgres:latest"
+    #healthcheck:
+      #test: [ "CMD-SHELL", "pg_isready -U prova_user -d prova_db" ] # OK - exit 0
+      #test: [ "CMD-SHELL", "pg_isready xxx" ] # KO - exit 3
+      #interval: "3s"
+    environment:
+      POSTGRES_USER: "prova_user"
+      POSTGRES_PASSWORD: "prova_password"
+      POSTGRES_DB: "prova_db"
+...
