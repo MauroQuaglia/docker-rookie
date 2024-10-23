@@ -1,0 +1,25 @@
+# https://dockerlabs.collabnix.com/advanced/security/capabilities/
+
+# Entro nel container come ubuntu che è già creato dall'immagine: utente 1000.
+
+# Se non metto la capability SYS_ADMIN, quando sono nel container provo a fare:
+# ubuntu@39755c2f4e4f:/$ mount /dev/sda1 /mnt
+# mount: /mnt: must be superuser to use mount.
+
+# Se metto la capability SYS_ADMIN, quando sono nel container provo a fare:
+# ubuntu@39755c2f4e4f:/$ mount /dev/sda1 /mnt
+# mount: special device /dev/sda1 does not exist.
+
+# Cioè ha la capacità di fare cose rispetto a prima.
+# Poi non le trova e non riesce però ci può provare.
+
+
+---
+services:
+  web:
+    image: "ubuntu:latest"
+    user: "1000:1000" # ubuntu
+    command: "/bin/bash -c 'sleep infinity'"
+    cap_add:
+      - SYS_ADMIN
+...
