@@ -1,0 +1,17 @@
+# Abbiamo delle variabile di ambiente nel Dockerfile, env_file ed environment.
+# Si vede che possono sovrascriversi con varie precedenze.
+
+# environment vince su env_file e Dockerfile
+# env_file vince su Dockerfile
+# Dockerfile
+
+---
+services:
+  dev:
+    build:
+      context: "."
+    env_file:
+      - "default.env"
+    environment:
+      var1: "environment var 1"
+...
