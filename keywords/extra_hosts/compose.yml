@@ -1,0 +1,39 @@
+#Se non definisco extra_hosts
+#127.0.0.1       localhost
+#::1     localhost ip6-localhost ip6-loopback
+#fe00::0 ip6-localnet
+#ff00::0 ip6-mcastprefix
+#ff02::1 ip6-allnodes
+#ff02::2 ip6-allrouters
+#10.45.1.2       a8114bce7a08
+
+
+# Dopo la definizione vedo anche il mio.
+#127.0.0.1       localhost
+#::1     localhost ip6-localhost ip6-loopback
+#fe00::0 ip6-localnet
+#ff00::0 ip6-mcastprefix
+#ff02::1 ip6-allnodes
+#ff02::2 ip6-allrouters
+#127.0.0.1       mqlocal
+#10.45.1.2       5a92dce2e3d9
+
+
+#host-gateway = IP del gateway del host, ovvero l'indirizzo della macchina che esegue Docker.
+# Questo è utile quando i container devono comunicare direttamente con servizi in esecuzione sull'host, come un server web, un database, o altri servizi di rete che
+# risiedono al di fuori dell'ambiente Docker, ma sulla stessa macchina host.
+
+# Funzionano:
+# ping mqinternal
+# curl mqinternal
+
+---
+services:
+  web:
+    build: "."
+    ports:
+      - "8080:80"
+    extra_hosts:
+      - "mqlocal=127.0.0.1"
+      - "mqinternal:host-gateway" #IP del gateway del host, ovvero l'indirizzo del sistema host che esegue Docker.
+...

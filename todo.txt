@@ -1,3 +1,5 @@
 # Provare a sistemare Prometheus.
 * Provare ad usare i secrets
 * Sistemare le cose sotto miscellanea
+
+A cosa serve nel compose.yml la keyword "external_links"? E' ancora utilizzata oppure è obsoleta?
