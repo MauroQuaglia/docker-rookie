@@ -1,0 +1,12 @@
+---
+# Se faccio ps nel container
+#  root           1  0.4  0.0   1048     4 ?        Ss   15:16   0:00 /sbin/docker-init -- /bin/bash -c sleep infinity
+#  root           7  0.0  0.0   2696  1052 ?        S    15:16   0:00 sleep infinity
+
+
+services:
+  web:
+    image: "ubuntu:latest"
+    init: true # Gestione degli zoombie
+    command: "/bin/bash -c 'sleep infinity'"
+...

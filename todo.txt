@@ -2,4 +2,4 @@
 * Provare ad usare i secrets
 * Sistemare le cose sotto miscellanea
 
-A cosa serve nel compose.yml la keyword "external_links"? E' ancora utilizzata oppure è obsoleta?
+A cosa serve nel compose.yml la keyword "links" su un sistema Linux? E' ancora utilizzata oppure è obsoleta?
