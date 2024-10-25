@@ -2,4 +2,7 @@
 services:
   web:
     build: "."
+    user: "mauro"
+    group_add:
+      - "ubuntu"
 ...
