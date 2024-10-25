@@ -6,6 +6,21 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define('vagrant-mng01') do |current|
+    # Porta esposta da un eventuale servizio che voglio vedere da locale.
+    # La porta deve essere aperta su tutti i nodi, non solo sul manager!
+    # In questo caso è stacks/nginx/stack.yml.
+    # 8880 sul mio PC ---> 8080 su Vagrant ---> 80 nel container
+    # Qui c'è una specie di workaround di cui non si può fare a meno in locale. Dovrei mappare la 8880 del mio host sull'8080 di vagrant per tutti i nodi.
+    # Ma non lo posso fare perché una volta mappata la 8880 del mio host al manager non posso poi mapparla anche a un worker, mi direbbe porta già in uso!
+    # Allora faccio così:
+    # HOST 8880 -> MNG01 8080
+    # HOST 8881 -> WRK01 8080
+    # HOST 8882 -> WRK02 8080
+    # In questo modo funziona lo stesso perché quando chiedo HOST 8880|8881|8882 viene comunque richiesto al cluster se c'è qualcuno nello swarm che
+    # può rispondere sulla porta 8080, e qualcuno c'è sempre!
+    # Vedere anche il disegnino tra i _watchme.
+    current.vm.network('forwarded_port', id: 'tcp', guest: 8080, host: 8880, auto_correct: false)
+
     current.vm.network('forwarded_port', id: 'ssh', guest: 22, host: 2310, auto_correct: false)
     current.vm.network('forwarded_port', id: 'portainer', guest: 9000, host: 19000, protocol: "tcp", auto_correct: false)
     current.vm.network('forwarded_port', id: 'stack-deploy', guest: 2375, host: 12375, protocol: "tcp", auto_correct: false)
@@ -14,8 +29,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define('vagrant-wrk01') do |current|
-    # Porta esposta da un eventuale servizio che voglio vedere dalocale.
-    #current.vm.network('forwarded_port', id: 'tcp', guest: 3000, host: 13000, auto_correct: false)
+    # 8881 sul mio PC ---> 8080 su Vagrant ---> 80 nel container
+    current.vm.network('forwarded_port', id: 'tcp', guest: 8080, host: 8881, auto_correct: false)
 
     current.vm.network('forwarded_port', id: 'ssh', guest: 22, host: 2311, auto_correct: false)
     current.vm.network('private_network', ip: '192.168.56.11')
@@ -23,8 +38,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define('vagrant-wrk02') do |current|
+    # 8882 sul mio PC ---> 8080 su Vagrant ---> 80 nel container
+    current.vm.network('forwarded_port', id: 'tcp', guest: 8080, host: 8882, auto_correct: false)
+
     current.vm.network('forwarded_port', id: 'ssh', guest: 22, host: 2312, auto_correct: false)
     current.vm.network('private_network', ip: '192.168.56.12')
     current.vm.hostname = 'vagrant-wrk02'
   end
+
 end
