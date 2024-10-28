@@ -1,0 +1,15 @@
+---
+# Sono le polici di restart del container... non a livello di deploy, ma di singolo container proprio.
+
+# restart: "no" (default)
+# restart: always
+# restart: on-failure
+# restart: on-failure:3
+# restart: unless-stopped
+
+services:
+  web:
+    image: "ubuntu:latest"
+    command: "/bin/bash -c 'sleep idnfinity'"
+    restart: "unless-stopped"
+...
