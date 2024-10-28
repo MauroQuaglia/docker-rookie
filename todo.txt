@@ -1,3 +1,1 @@
 # Provare a sistemare Prometheus.
-
-A cosa serve nel compose.yml la keyword "links" su un sistema Linux? E' ancora utilizzata oppure è obsoleta?
