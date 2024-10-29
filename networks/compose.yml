@@ -3,4 +3,11 @@ services:
   app:
     build: "."
     command: "/bin/bash -c  'sleep infinity'"
+    ports:
+      - "8080:80"
+    networks:
+      - "local-net"
+networks:
+  local-net:
+    driver: "bridge"
 ...
