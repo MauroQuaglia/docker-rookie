@@ -1,0 +1,26 @@
+---
+services:
+  app:
+    image: "ubuntu:latest"
+    command: "/bin/bash -c 'sleep infinity'"
+    volumes:
+      - type: "volume" # NAMED VOLUME
+        # - volume-data:/var/run
+        source: "volume-data"
+        target: "/var/run"
+
+      - type: "bind" # BIND VOLUME o MOUNT HOST PATH
+        # - ./bind_data.txt:/tmp/bind_data.txt
+        source: "./bind_data.txt"
+        target: "/tmp/bind_data.txt"
+
+# Alla fine l'unica vera cosa che di solito si usa è il driver, che di default è local.
+volumes:
+  volume-data:
+    driver: "local" # /var/lib/docker/volumes/volumes_volume-data/_data; Posso usare anche NFS (tramite plugin) o altro...
+    #external: false
+    #name: "ciccio"
+
+
+
+...

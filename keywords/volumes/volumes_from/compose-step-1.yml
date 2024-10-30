@@ -1,0 +1,14 @@
+---
+services:
+  app:
+    image: "ubuntu:latest"
+    command: "/bin/bash -c 'sleep infinity'"
+    container_name: "step_1"
+    volumes:
+      - "volume_data:/tmp"
+
+volumes:
+  volume_data:
+    driver: "local"
+    name: "ciccio"
+...

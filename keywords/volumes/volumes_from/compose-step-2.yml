@@ -1,0 +1,9 @@
+---
+services:
+  app:
+    image: "ubuntu:latest"
+    command: "/bin/bash -c 'sleep infinity'"
+    container_name: "step_2"
+    volumes_from:
+      - "container:step_1:ro"
+...
