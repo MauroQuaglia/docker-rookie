@@ -1,0 +1,24 @@
+---
+services:
+  app:
+    image: "nginx:latest"
+    command: "/bin/bash -c  'sleep infinity'"
+    ports:
+      - "8080:80"
+    # Serve solo per specificare la connessione con la reste.
+    # Non servono altri attributi.
+    networks:
+      - "local-net"
+
+# Alla fine l'unica vera cosa che di solito si usa è il driver, che di default è bridge.
+networks:
+  local-net:
+    # name: "locally"
+    driver: "bridge"
+    # Possibilità di configurazione del driver
+    #driver_opts:
+    #  com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
+    # Di solito si usa per lo Swarm.
+    # attachable: true
+    # external: false # Se lo metto a true significa che il suo ciclo di vita non è legato all'applicazione. E' una rete che c'è già.
+...
