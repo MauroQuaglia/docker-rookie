@@ -1,5 +1,5 @@
 /.idea
-/pdf/*
+/_pdf
 /ansible/.vagrant
 /ansible-swarm/.vagrant
 *.key
