@@ -6,6 +6,7 @@
 
   roles:
     - role: "docker"
+    # - role: "docker-engine"
     - role: "terminator"
     - role: "portainer"
 ...
