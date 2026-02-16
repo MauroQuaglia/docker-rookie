@@ -1,0 +1,48 @@
+---
+- name: "Install Docker requirements packages"
+  apt:
+    update_cache: true
+    name:
+      - "ca-certificates"
+      - "curl"
+
+- name: "Create keyrings directory"
+  file:
+    path: "/etc/apt/keyrings"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+
+- name: "Install Docker apt key"
+  get_url:
+    url: "https://download.docker.com/linux/debian/gpg"
+    dest: "/etc/apt/keyrings/docker.asc"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: "Create Docker sources file"
+  copy:
+    dest: "/etc/apt/sources.list.d/docker.sources"
+    content: |
+      Types: deb
+      URIs: https://download.docker.com/linux/debian
+      Suites: {{ ansible_distribution_release }}
+      Components: stable
+      Signed-By: /etc/apt/keyrings/docker.asc
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: "Install Docker Engine"
+  apt:
+    update_cache: true
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+      - "docker-buildx-plugin"
+      - "docker-compose-plugin"
+      - "docker-ce-rootless-extras"
+...
