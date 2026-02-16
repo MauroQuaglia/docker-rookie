@@ -6,11 +6,4 @@
   user:
     name: "vagrant"
     group: "docker"
-
-- name: "Restart docker"
-  become: true
-  service:
-    daemon_reload: true
-    state: "restarted"
-    name: "docker"
 ...

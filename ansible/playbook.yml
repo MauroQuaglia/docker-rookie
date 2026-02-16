@@ -5,8 +5,8 @@
   become: true
 
   roles:
-    - role: "docker"
-    # - role: "docker-engine"
-    - role: "terminator"
-    - role: "portainer"
+    #- role: "docker"
+     - role: "docker-engine"
+    #- role: "terminator"
+    #- role: "portainer"
 ...
