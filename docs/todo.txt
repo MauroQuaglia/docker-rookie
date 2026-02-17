@@ -1,6 +1,5 @@
 * WIP:
-https://docs.docker.com/manuals/
-* https://docs.docker.com/build/
+* https://docs.docker.com/build/building/multi-stage/
 
 
 

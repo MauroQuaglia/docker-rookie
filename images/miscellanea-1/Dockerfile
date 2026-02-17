@@ -1,3 +1,5 @@
+# https://docs.docker.com/build/building/multi-stage/
+
 # In questa immagine ho tutto il golang installato ma non è necessario.
 # Posso copiare l'eseguibile su una macchina che non ha Go installato ed eseguirlo con /bin/hello.
 # Funziona senza runtime, interpreter, ...
