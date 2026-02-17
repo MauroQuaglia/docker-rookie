@@ -1,4 +1,9 @@
 * WIP:
-https://docs.docker.com/get-started/introduction/
+https://docs.docker.com/manuals/
+* https://docs.docker.com/build/
 
 
+
+* IMPORTANTE
+** https://docs.docker.com/guides/ruby/
+** Guida su come containeraizzare una Rails App.
