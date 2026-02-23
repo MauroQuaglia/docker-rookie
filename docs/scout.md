@@ -9,3 +9,6 @@ Esempio:
 
 * Se faccio: `docker scout quickview nginx@sha256:68b4297e20ca0f8cd692bf948cfe7b367abd8c33c55aea134aa275e8fd8ebe03`
 * Vedo le vulnerabilità!
+
+* Comunque lo puoi abilitare sul tuo Docker Hub ed è comodo, si vedono bene le cose.
+* In questo modo posso evitare di installarlo in locale... certo che però devi fare prima il push dell'immagine.
