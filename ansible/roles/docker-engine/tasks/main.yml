@@ -6,4 +6,12 @@
   user:
     name: "vagrant"
     group: "docker"
+
+- name: "Create '/home/vagrant/.docker' directory for vagrant user"
+  file:
+    path: "/home/vagrant/.docker"
+    state: "directory"
+    owner: "vagrant"
+    group: "docker"
+    mode: "0700"
 ...
