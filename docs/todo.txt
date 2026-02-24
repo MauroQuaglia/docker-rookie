@@ -1,5 +1,5 @@
 * WIP:
-* https://docs.docker.com/build/building/multi-stage/
+* https://docs.docker.com/engine/logging/
 
 
 
