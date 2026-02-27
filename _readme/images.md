@@ -161,3 +161,23 @@ Il `.dockerignore` serve per tenere l'immagine piccola cosi da non copiare tutti
 * Quando uso il comando `docker image build` posso specificare anche il `--target` se voglio provare a fare build di development, produzione, eccetere.
 * Per capire quale immagine scaricare il server docker prima scarica il manifest di una immagine, lo legge, e poi in base all'architettura del sistema scarica l'immagine corretta.
 * Una buona cosa è specificare sempre un utente nel Dockerfile.
+
+# IMPORTANTE
+* Ecco una cosa importante...
+* Se faccio `docker compose build .` vedo una immagine con un certo id:sha.
+  * Se rifaccio la stessa build identica lo vedo cambiato!
+* Se faccio `docker image build .` vedo una immagine con un certo id:sha.
+  * Se rifaccio la stessa build identica lo vedo uguale!
+  * A meno che non cambio un qualcosa, per esempio anche il valore di una riga di un csv che si copia dentro l'immagine e allora lo vedo differente.
+* In effetti se confronto l'output delle due build sono differenti, come se usasse cose diverse.
+
+* Da ChatGPT
+```
+1. docker compose build vs docker image build
+La differenza principale è che:
+docker image build → usa direttamente il builder Docker standard (più stabile nella cache).
+docker compose build → può usare BuildKit con isolamento di progetto e caching diverso.
+Compose non garantisce reproducibility degli hash tra rebuild identiche.
+```
+
+* Nota: poi ci sarebbe anche un bel `docker buildx build` che è un terzo modo di fare una cacchio di build.

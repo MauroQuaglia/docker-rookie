@@ -1,0 +1,5 @@
+services:
+  backend:
+    image: "redis:7.4.6"
+    ports:
+     - "9736:6379"
