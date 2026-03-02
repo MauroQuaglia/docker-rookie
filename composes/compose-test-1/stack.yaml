@@ -1,8 +1,0 @@
-services:
-  frontend:
-    build:
-      context: "."
-    ports:
-      - "7654:4567"
-  backend:
-    image: "redis:7.4.6"

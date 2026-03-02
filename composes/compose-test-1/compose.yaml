@@ -1,3 +1,14 @@
 services:
-  my-redis:
+  frontend:
+    build:
+      context: "."
+    ports:
+      - "7654:4567"
+    networks:
+      - "my-net"
+  backend:
     image: "redis:7.4.6"
+    networks:
+      - "my-net"
+networks:
+  my-net:

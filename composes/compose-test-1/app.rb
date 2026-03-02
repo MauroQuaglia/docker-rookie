@@ -9,6 +9,7 @@ end
 private
 
 def get_hit_count
-  redis = Redis.new(host: 'my-redis', port: 6379)
+  # Essendo sulla stessa rete si vparlano per nome.
+  redis = Redis.new(host: 'compose-test-1-backend-1', port: 6379)
   redis.incr('hits')
 end
