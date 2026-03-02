@@ -1,0 +1,24 @@
+name: 'machine'
+
+services:
+  frontend:
+    build:
+      context: "."
+    ports:
+      - "7654:4567"
+    networks:
+      - "my-net"
+    configs:
+      - source: "stuff_config"
+        target:  "/etc/app/stuff.conf"
+  backend:
+    image: "redis:7.4.6"
+    networks:
+      - "my-net"
+
+configs:
+  stuff_config:
+    file: "./stuff.conf"
+
+networks:
+  my-net:
