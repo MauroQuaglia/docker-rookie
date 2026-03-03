@@ -10,7 +10,8 @@ end
 private
 
 def get_hit_count
-  # Essendo sulla stessa rete si vparlano per nome.
-  redis = Redis.new(host: 'machine-backend-1', port: 6379)
+  # Essendo sulla stessa rete si parlano per nome del service.
+  # Va bene sia in locale che sullo Swarm.
+  redis = Redis.new(host: 'backend', port: 6379)
   redis.incr('hits')
 end
