@@ -9,14 +9,25 @@ services:
     configs:
       - source: "stuff_config"
         target:  "/etc/app/stuff.conf"
+    secrets:
+      - "stuff_certificate"
   backend:
     image: "redis:7.4.6"
     networks:
       - "my-net"
+    volumes:
+      - "redis-data:/data"
 
 configs:
   stuff_config:
     file: "./stuff.conf"
+
+secrets:
+  stuff_certificate:
+    file: "./stuff.cert"
+
+volumes:
+  redis-data:
 
 networks:
   my-net:

@@ -1,29 +1,40 @@
 services:
   frontend:
     image: "app:1"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: "on-failure"
     ports:
       - "7654:4567"
     networks:
       - "my-net"
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: "on-failure"
     configs:
       - source: "stuff_config"
         target:  "/etc/app/stuff.conf"
+    secrets:
+      - "stuff_certificate"
   backend:
     image: "redis:7.4.6"
-    networks:
-      - "my-net"
     deploy:
       replicas: 1
       restart_policy:
         condition: "on-failure"
+    networks:
+      - "my-net"
+    volumes:
+      - "redis-data:/data"
 
 configs:
   stuff_config:
     file: "./stuff.conf"
+
+secrets:
+  stuff_certificate:
+    file: "./stuff.cert"
+
+volumes:
+  redis-data:
 
 networks:
   my-net:
