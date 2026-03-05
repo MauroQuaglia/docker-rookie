@@ -12,3 +12,5 @@ cd /images/multi_platform
 docker buildx build --platform linux/arm64 -t arm64:latest --load .
 KO: perché con questo driver non riesce a fare anche arm
 ```
+
+* Per avere più informazioni suldriver di build di default: `docker buildx inspect default`
