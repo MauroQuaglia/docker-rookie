@@ -10,7 +10,7 @@ services:
     build:
       context: "."
     healthcheck:
-      test: ["CMD-SHELL", "sleep 6 && exit 0"]
+      test: ["CMD", "sleep 6 && exit 0"]
       interval: 3s
       timeout: 5s # E' per il singolo giro di chech, non assoluto.
       retries: 3 # Fallimenti consecutivi prima di dichiarare tutto l'healthcheck fallito.
