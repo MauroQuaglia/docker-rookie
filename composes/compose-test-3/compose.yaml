@@ -1,0 +1,26 @@
+services:
+  frontend:
+    deploy:
+      replicas: 1
+    build: "."
+    ports:
+      - published: 7654
+        target: 4567
+    networks:
+      - "my-net"
+  backend:
+    deploy:
+      replicas: 1
+    image: "redis:7.4.6"
+    networks:
+      - "my-net"
+    volumes:
+      - type: "volume"
+        source: "redis-data"
+        target: "/data"
+
+volumes:
+  redis-data:
+
+networks:
+  my-net:
