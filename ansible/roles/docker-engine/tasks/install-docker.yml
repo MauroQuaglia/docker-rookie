@@ -45,6 +45,7 @@
       - "containerd.io"
       - "docker-buildx-plugin"
       - "docker-compose-plugin"
+      - "docker-model-plugin"
       - "docker-ce-rootless-extras"
 
 - name: "Restart docker"
