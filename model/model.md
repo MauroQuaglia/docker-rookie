@@ -22,6 +22,8 @@
 
 AT 1 (host)
 * http://localhost:12434
+* http://localhost:12434/models
+* http://localhost:12434/engines/llama.cpp/v1/models
 
 AT 2 (container)
 * docker container run -it --rm --add-host=model-runner.docker.internal:host-gateway ubuntu:latest bash
