@@ -1,0 +1,26 @@
+# docker model run gemma3:4B-Q4_K_M -d
+
+# NOTA: Dovrebbe funzionare, invece non riesco da interfaccia WEB a selezionare il modello!
+
+services:
+  open-webui:
+    image: "ghcr.io/open-webui/open-webui:main"
+    ports:
+      - "3033:8080"
+    environment:
+      DEFAULT_MODELS: "gemma3:4B-Q4_K_M"
+      WEBUI_AUTH: false
+      OPENAI_API_BASE_URL: "http://model-runner.docker.internal/"
+      OPENAI_API_KEY: "na"
+    volumes:
+      - "open-webui:/app/backend/data"
+    depends_on:
+      - "dmr"
+  dmr:
+    provider:
+      type: "model"
+      options:
+        model: "gemma3:4B-Q4_K_M"
+
+volumes:
+  open-webui:

@@ -1,6 +1,10 @@
 * WIP:
 * https://docs.docker.com/ai/model-runner/inference-engines/
 
+* WIP
+* provider
+* extend
+
 
 
 * IMPORTANTE
