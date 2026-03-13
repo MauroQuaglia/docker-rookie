@@ -18,7 +18,7 @@ services:
       - "dmr"
   dmr:
     provider:
-      type: "model"
+      type: "model"  # Looks for docker-model plugin or model binary
       options:
         model: "gemma3:4B-Q4_K_M"
 

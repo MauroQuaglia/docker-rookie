@@ -8,5 +8,6 @@
 
 
 * IMPORTANTE
+** https://www.docker.com/blog/docker-compose-with-provider-services/
 ** https://docs.docker.com/guides/ruby/
 ** Guida su come containeraizzare una Rails App.
