@@ -1,0 +1,10 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    networks:
+      att:
+networks:
+  att:
+    driver: "overlay"
+    attachable: false

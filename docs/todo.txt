@@ -1,23 +1,8 @@
 * WIP:
-* https://docs.docker.com/ai/model-runner/inference-engines/
-
-* WIP
-* provider
-* extend
-
-
+* https://docs.docker.com/reference/compose-file/networks/
 
 * IMPORTANTE
 ** https://www.docker.com/blog/docker-compose-with-provider-services/
 ** https://docs.docker.com/guides/ruby/
 ** Guida su come containeraizzare una Rails App.
 
-WIP
-installare curl git -y
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh (scelta di default)
-
-curl -fsSL https://spinframework.dev/downloads/install.sh | bash
-sudo mv spin /usr/local/bin/
-
-https://rust-lang.org/tools/install/
-https://webassembly.org/

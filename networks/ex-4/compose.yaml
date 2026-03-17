@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    networks:
+      att:
+networks:
+  att:
+    driver: "bridge"
+    attachable: false # In realtà se ne frega, e in locale ti puoi connettere lo stesso.
+    # La cosa cambia se usi il driver "overlay" e sei in uno swarm.

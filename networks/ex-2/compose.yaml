@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    networks:
+      - "front-tier"
+      - "back-tier"
+
+networks:
+  front-tier:
+  back-tier:

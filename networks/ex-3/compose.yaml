@@ -1,0 +1,8 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    networks:
+      default: {} # Praticamente la bridge
+networks:
+  default: {}

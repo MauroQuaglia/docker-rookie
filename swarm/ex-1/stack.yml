@@ -1,0 +1,28 @@
+services:
+  web:
+    image: "nginx:latest"
+    depends_on:
+      - "app"
+  app:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    healthcheck:
+      test: ["CMD", "sleep 3 && exit 0"]
+      interval: 3s
+      timeout: 5s # E' per il singolo giro di chech, non assoluto.
+      retries: 3 # Fallimenti consecutivi prima di dichiarare tutto l'healthcheck fallito.
+      start_period: 0s
+
+# Se metto uno sleep 6:
+# time (docker compose up -d)
+# t=0   start container +0
+# t=3   healthcheck (sleep 6 - timeout 5) fallito +8
+# t=6   healthcheck (sleep 6 - timeout 5) fallito +16
+# t=9   healthcheck (sleep 6 - timeout 5) fallito +24
+# unhealthy (3 retry)
+
+# Se metto uno sleep 3:
+# time (docker compose up -d)
+# t=0   start container +0
+# t=3   healthcheck (sleep 3 - timeout 5) successo +6
+# healthy (1 retry)
