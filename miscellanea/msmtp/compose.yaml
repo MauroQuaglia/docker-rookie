@@ -1,0 +1,7 @@
+services:
+  msmtp:
+    build: "."
+    command: ["sleep", "infinity"]
+  mailpit:
+    image: "axllent/mailpit"
+
