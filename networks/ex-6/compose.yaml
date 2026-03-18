@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    ports:
+      - "0.0.0.0:8081:80"
+    networks:
+      ex-5_ex5:
+networks:
+  ex-5_ex5:
+    external: true

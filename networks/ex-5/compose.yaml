@@ -1,0 +1,13 @@
+services:
+  frontend:
+    image: "ubuntu:latest"
+    command: ["sleep", "infinity"]
+    ports:
+      - "0.0.0.0:8080:80"
+    networks:
+      ex5:
+networks:
+  ex5:
+    driver: "bridge"
+    enable_ipv6: false
+    enable_ipv4: true
