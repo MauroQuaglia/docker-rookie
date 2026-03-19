@@ -1,7 +1,8 @@
 services:
-  msmtp:
+  client:
     build: "."
+    user: "1000:1000"
     command: ["sleep", "infinity"]
-  mailpit:
+  server:
     image: "axllent/mailpit"
 
