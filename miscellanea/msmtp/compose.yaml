@@ -1,8 +1,18 @@
 services:
-  client:
+  my-client:
     build: "."
     user: "1000:1000"
     command: ["sleep", "infinity"]
-  server:
+    volumes:
+      - "./msmtp.log:/home/dockeruser/.msmtp.log"
+    networks:
+      - "mailnet"
+  my-server:
     image: "axllent/mailpit"
+    ports:
+      - "127.0.0.1:8026:8025"
+    networks:
+      - "mailnet"
+networks:
+  mailnet:
 

@@ -1,7 +1,7 @@
 FROM debian:bookworm
 
 RUN apt update && \
-    apt install -y msmtp
+    apt install -y msmtp iputils-ping telnet
 
 ARG DOCKER_GROUP=dockeruser
 ARG GID=1000
