@@ -1,0 +1,14 @@
+services:
+  web:
+    image: "nginx:latest"
+    container_name: "web"
+    ports:
+      - "127.0.0.1:5005:80"
+    networks:
+      - "localnet"
+  client:
+    image: "ubuntu:latest"
+    container_name: "client"
+    command: ["sleep", "infinity"]
+networks:
+  localnet:
