@@ -1,0 +1,11 @@
+services:
+  web:
+    build: "."
+    container_name: "nginx-2"
+    extra_hosts:
+      - "octopus:host-gateway"
+
+# Dal Container riesco a contattare Docker Host.
+# Locale: python3 -m http.server 8080
+# Se faccio dal container: curl http://octopus:8080
+ # Funziona
