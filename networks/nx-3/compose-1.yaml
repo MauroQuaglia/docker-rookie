@@ -1,0 +1,9 @@
+services:
+  web1:
+    build: "."
+    container_name: "nginx-1"
+    networks:
+      - "b1"
+networks:
+  b1:
+    driver: "bridge"
