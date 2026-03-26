@@ -3,7 +3,10 @@ services:
     build: "."
     container_name: "nginx-1"
 
-# Dal Container riesco a contattare Docker Host.
 # Locale: python3 -m http.server 8080
+
 # Se faccio dal container: curl http://10.45.0.65:8080
   # Dove 10.45.0.65 è il gateway della rete nx-1_default
+
+# Se faccio da locale curl http://10.45.0.66:80
+  # Dove 10.45.0.66 è l'IP del container
