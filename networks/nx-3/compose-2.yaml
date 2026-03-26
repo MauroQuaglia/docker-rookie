@@ -2,8 +2,6 @@ services:
   web2:
     build: "."
     container_name: "nginx-2"
-    ports:
-      - "8080:80"
     networks:
       - "b2"
 networks:
