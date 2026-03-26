@@ -1,0 +1,30 @@
+services:
+  web1:
+    build: "."
+    container_name: "nginx-1"
+    network_mode: "host"
+  web2:
+    image: "ubuntu:latest"
+    container_name: "ubuntu-1"
+    command: ["sleep", "infinity"]
+    extra_hosts:
+      - "octopus:host-gateway"
+    networks:
+      - "b1"
+networks:
+  b1:
+    driver: "bridge"
+
+
+
+# sudo systemctl stop nginx se ho già un nginx in locale sulla porta 80!
+
+# docker container exec -it ubuntu-1 bash
+# > curl http://octopus:80 (dopo aver installato curl)
+# funziona e risponde nginx
+
+# prendo dalla nx-4_b1 l'IP del container ubuntu.
+# docker container exec -it nginx-1 bash
+# > ping 10.45.0.66
+# Risponde
+
