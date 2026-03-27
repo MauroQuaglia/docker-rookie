@@ -1,0 +1,10 @@
+services:
+  web:
+    image: "ubuntu:latest"
+    container_name: "ubuntu-1"
+    command: ["sleep", "infinity"]
+    volumes:
+      - "./my_data:/my_data"
+      - "miscellaneous:/my_stuff"
+volumes:
+  miscellaneous:
