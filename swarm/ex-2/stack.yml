@@ -1,3 +1,4 @@
+# Da browser: http://0.0.0.0:8080/ e vedo arivare il traffico alle repliche sullo swarm.
 services:
   web:
     image: "nginx:latest"
