@@ -4,7 +4,7 @@ services:
     container_name: "ubuntu-1"
     command: ["sleep", "infinity"]
     volumes:
-      - "./my_data:/my_data"
-      - "miscellaneous:/my_stuff"
+      - "./my_data:/my_data" # bind
+      - "miscellaneous:/my_stuff" # volume
 volumes:
   miscellaneous:
