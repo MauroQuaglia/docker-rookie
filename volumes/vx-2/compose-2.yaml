@@ -1,0 +1,11 @@
+services:
+  web-reader:
+    image: "ubuntu:latest"
+    container_name: "ubuntu-reader"
+    command: ["sleep", "infinity"]
+    volumes:
+      - "miscellaneous:/my_reader:ro"
+volumes:
+  miscellaneous:
+    name: "miscellaneous"
+    external: true

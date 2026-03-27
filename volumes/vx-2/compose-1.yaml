@@ -1,0 +1,11 @@
+services:
+  web-writer:
+    image: "ubuntu:latest"
+    container_name: "ubuntu-writer"
+    command: ["sleep", "infinity"]
+    volumes:
+      - "miscellaneous:/my_writer:rw"
+volumes:
+  miscellaneous:
+    name: "miscellaneous"
+    external: false
