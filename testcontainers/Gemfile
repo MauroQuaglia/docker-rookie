@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
-gem "testcontainers"
+gem "redis"
 
 group :test do
   gem "rspec"
+  gem "testcontainers"
+  gem "base64"
 end
