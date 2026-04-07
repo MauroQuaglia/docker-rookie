@@ -1,8 +1,4 @@
-* WIP:
-* https://docs.docker.com/reference/compose-file/networks/
-* https://www.router-switch.com/faq/layer2-vs-layer3-switch.html
-
-* IMPORTANTE
+* OSS
 ** https://www.docker.com/blog/docker-compose-with-provider-services/
 ** https://docs.docker.com/guides/ruby/
 ** Guida su come containeraizzare una Rails App.
