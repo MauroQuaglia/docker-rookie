@@ -5,5 +5,7 @@ gem "redis"
 group :test do
   gem "rspec"
   gem "testcontainers"
+  gem "testcontainers-selenium"
+  gem "selenium-webdriver"
   gem "base64"
 end

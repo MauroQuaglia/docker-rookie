@@ -1,7 +1,7 @@
 require 'testcontainers'
 require_relative 'lib/redis_cache'
 
-describe 'Miscellanea' do
+describe 'Redis' do
   before do
     @redis_container = Testcontainers::DockerContainer.new("redis:6.2-alpine").with_exposed_ports(6379)
     @redis_container.start
@@ -16,7 +16,6 @@ describe 'Miscellanea' do
     expect(@redis.size).to eq(0)
     @redis.set("my_key", 100)
     expect(@redis.size).to eq(1)
-    sleep 120
   end
 
   after do
