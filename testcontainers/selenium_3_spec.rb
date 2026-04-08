@@ -19,7 +19,7 @@ describe 'Selenium' do
     )
 
     driver.navigate.to("https://google.it/")
-    driver.save_screenshot("screenshot.png")
+    driver.save_screenshot("#{Dir.pwd}/testcontainers/screenshots/test-3.png")
   end
 
   after do

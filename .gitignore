@@ -6,3 +6,4 @@
 *.log
 tmp/
 stacks/rocketchat-hubot-demo
+testcontainers/screenshots/
