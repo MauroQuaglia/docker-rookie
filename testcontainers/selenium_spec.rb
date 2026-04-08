@@ -8,8 +8,6 @@ describe 'Selenium' do
   end
 
   it 'test' do
-    #Il WebDriver è il ponte tra il codice di test e il browser (Firefox, in questo caso). Si occupa di inviare comandi per navigare, cliccare, prendere screenshot e altro.
-    # #Il driver che sfrutta il container. In questo caso, il container ospita un'istanza di un browser (come Firefox), ma il driver Selenium esegue il codice fuori dal container, controllando e interagendo con il browser all'interno del container. Il container esegue il browser, mentre Selenium WebDriver agisce come una "scatola nera" che invia comandi al browser nel container tramite una connessione URL.
     driver = Selenium::WebDriver.for(
       :remote,
       url:  @selenium_container.selenium_url,
